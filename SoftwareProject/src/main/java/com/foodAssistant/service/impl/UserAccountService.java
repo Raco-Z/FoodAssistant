@@ -1,44 +1,58 @@
 package com.foodAssistant.service.impl;
 
-import com.foodAssistant.dao.IAccountDao;
-import com.foodAssistant.dao.impl.AccountDao;
-import com.foodAssistant.domain.Menu;
+import com.foodAssistant.dao.IMenuDao;
+import com.foodAssistant.dao.IRecordDao;
+import com.foodAssistant.domain.menu.Menu;
+import com.foodAssistant.domain.record.Record;
 import com.foodAssistant.service.IUserAccountService;
 
 import java.util.List;
 
 public class UserAccountService implements IUserAccountService {
-    private IAccountDao userAccountDao;
+    private IMenuDao menuDao;
+    private IRecordDao recordDao;
 
-    public void setAccountDao(IAccountDao userAccountDao) {
-        this.userAccountDao = userAccountDao;
+    public void setMenuDao(IMenuDao menuDao) {
+        this.menuDao = menuDao;
+    }
+
+    public void setRecordDao(IRecordDao recordDao) {
+        this.recordDao = recordDao;
     }
 
     public List<Menu> getMenu(){
-        return userAccountDao.getMenu();
+        return menuDao.getMenu();
     }
 
     public Menu getMenuByName(String foodName) {
-        return userAccountDao.getMenuByName(foodName);
+        return menuDao.getMenuByName(foodName);
     }
 
     public Menu getMenuById(Integer foodId) {
-        return userAccountDao.getMenuById(foodId);
+        return menuDao.getMenuById(foodId);
     }
 
     public List<Menu> getMenuByType(String foodType) {
-        return userAccountDao.getMenuByType(foodType);
+        return menuDao.getMenuByType(foodType);
+    }
+
+    public List<Record> getRecord() {
+        return recordDao.getRecord();
+    }
+
+    public Record getRecordById(Integer recordId) {
+        return recordDao.getRecordById(recordId);
     }
 
     public void createRecord() {
-        userAccountDao.create();
+        recordDao.createRecord();
     }
 
     public void deleteRecord() {
-        userAccountDao.delete();
+        recordDao.deleteRecord();
     }
 
     public void updateRecord() {
-        userAccountDao.update();
+        recordDao.updateRecord();
     }
 }

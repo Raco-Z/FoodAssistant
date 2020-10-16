@@ -1,24 +1,28 @@
-package com.foodAssistant.service;
+package com.foodAssistant.dao;
 
 import com.foodAssistant.domain.record.Record;
 
 import java.util.List;
 
-public interface IUserAccountService extends IAccountService{
+/**
+ * 处理和饮食记录有关的操作
+ */
+public interface IRecordDao {
     /**
-     * 查询所有饮食记录
+     * 查询全部饮食记录
      * @return
      */
     List<Record> getRecord();
 
     /**
-     * 查询一条饮食记录
+     * 通过记录ID查询饮食记录
+     * @param recordId
      * @return
      */
     Record getRecordById(Integer recordId);
 
     /**
-     * 创建饮食记录
+     * 新建饮食记录
      */
     void createRecord();
 
@@ -31,5 +35,4 @@ public interface IUserAccountService extends IAccountService{
      * 更新饮食记录
      */
     void updateRecord();
-
 }

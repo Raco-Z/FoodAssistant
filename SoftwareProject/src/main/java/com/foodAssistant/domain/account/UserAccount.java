@@ -1,10 +1,17 @@
-package com.foodAssistant.domain;
+package com.foodAssistant.domain.account;
+
+import com.foodAssistant.domain.menu.Menu;
+import com.foodAssistant.domain.record.Record;
 
 public class UserAccount {
+    //普通用户的ID
     private Integer accountId;
+    //普通用户的名称
     private String accountName;
+    //用户的推荐食谱
     private Menu recommendedFood;
-    private Menu recordedFood;
+    //用户的饮食数据
+    private Record recordedFood;
     //private Integer priority;
 
     public Integer getAccountId() {
@@ -31,11 +38,11 @@ public class UserAccount {
         this.recommendedFood = recommendedFood;
     }
 
-    public Menu getRecordedFood() {
+    public Record getRecordedFood() {
         return recordedFood;
     }
 
-    public void setRecordedFood(Menu recordedFood) {
+    public void setRecordedFood(Record recordedFood) {
         this.recordedFood = recordedFood;
     }
 

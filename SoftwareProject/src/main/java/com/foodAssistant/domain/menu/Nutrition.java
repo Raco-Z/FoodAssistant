@@ -1,4 +1,4 @@
-package com.foodAssistant.domain;
+package com.foodAssistant.domain.menu;
 
 public class Nutrition {
     private Integer protein;

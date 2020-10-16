@@ -1,7 +1,9 @@
-package com.foodAssistant.domain;
+package com.foodAssistant.domain.account;
 
 public class AdminAccount {
+    //管理员用户的ID
     private Integer accountId;
+    //管理员用户的名称
     private String accountName;
 
     public Integer getAccountId() {

@@ -1,0 +1,52 @@
+package com.foodAssistant.dao;
+
+import com.foodAssistant.domain.menu.Menu;
+
+import java.util.List;
+
+/**
+ * 处理和食物列表有关的操作
+ */
+public interface IMenuDao {
+    /**
+     * 查询全部食物列表
+     * @return
+     */
+    List<Menu> getMenu();
+
+    /**
+     * 通过食物ID查询
+     * @param foodId
+     * @return
+     */
+    Menu getMenuById(Integer foodId);
+
+    /**
+     * 通过食物名称查询
+     * @param foodName
+     * @return
+     */
+    Menu getMenuByName(String foodName);
+
+    /**
+     * 通过食物类型查询
+     * @param foodType
+     * @return
+     */
+    List<Menu> getMenuByType(String foodType);
+
+    /**
+     * 创建新的食物列表项
+     */
+    void createMenu();
+
+    /**
+     * 删除已有的食物列表项
+     */
+    void deleteMenu();
+
+    /**
+     * 更新已有的食物列表项
+     */
+    void updateMenu();
+}

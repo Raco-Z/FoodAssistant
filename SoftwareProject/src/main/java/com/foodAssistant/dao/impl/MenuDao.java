@@ -1,14 +1,15 @@
 package com.foodAssistant.dao.impl;
 
-import com.foodAssistant.dao.IAccountDao;
-import com.foodAssistant.domain.Menu;
+import com.foodAssistant.dao.IMenuDao;
+import com.foodAssistant.domain.menu.Menu;
 
 import java.util.List;
 
-public class AccountDao implements IAccountDao {
-
+/**
+ * 处理食物列表的实现类
+ */
+public class MenuDao implements IMenuDao {
     public List<Menu> getMenu() {
-        //代理
         return null;
     }
 
@@ -24,16 +25,15 @@ public class AccountDao implements IAccountDao {
         return null;
     }
 
-    public void create() {
+    public void createMenu() {
 
     }
 
-    public void delete() {
+    public void deleteMenu() {
 
     }
 
-    public void update() {
+    public void updateMenu() {
 
     }
-
 }

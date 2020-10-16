@@ -1,44 +1,39 @@
 package com.foodAssistant.service.impl;
 
-import com.foodAssistant.dao.IAccountDao;
-import com.foodAssistant.domain.Menu;
+import com.foodAssistant.dao.IMenuDao;
+import com.foodAssistant.domain.menu.Menu;
 import com.foodAssistant.service.IAdminAccount;
 
 import java.util.List;
 
 public class AdminAccount implements IAdminAccount {
-
-    private IAccountDao adminAccountDao;
-
-    public void setAdminAccountDao(IAccountDao adminAccountDao) {
-        this.adminAccountDao = adminAccountDao;
-    }
+    private IMenuDao menuDao;
 
     public void createMenu() {
-        adminAccountDao.create();
+        menuDao.createMenu();
     }
 
     public void deleteMenu() {
-        adminAccountDao.delete();
+        menuDao.deleteMenu();
     }
 
     public void updateMenu() {
-        adminAccountDao.update();
+        menuDao.updateMenu();
     }
 
     public List<Menu> getMenu() {
-        return adminAccountDao.getMenu();
+        return menuDao.getMenu();
     }
 
     public Menu getMenuByName(String foodName) {
-        return adminAccountDao.getMenuByName(foodName);
+        return menuDao.getMenuByName(foodName);
     }
 
     public Menu getMenuById(Integer foodId) {
-        return adminAccountDao.getMenuById(foodId);
+        return menuDao.getMenuById(foodId);
     }
 
     public List<Menu> getMenuByType(String foodType) {
-        return adminAccountDao.getMenuByType(foodType);
+        return menuDao.getMenuByType(foodType);
     }
 }
