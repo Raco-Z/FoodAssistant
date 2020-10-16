@@ -9,16 +9,16 @@ import java.util.List;
 public class AdminAccount implements IAdminAccount {
     private IMenuDao menuDao;
 
-    public void createMenu() {
-        menuDao.createMenu();
+    public void createMenu(Menu menu) {
+        menuDao.createMenu(menu);
     }
 
-    public void deleteMenu() {
-        menuDao.deleteMenu();
+    public void deleteMenu(Integer menuId) {
+        menuDao.deleteMenu(menuId);
     }
 
-    public void updateMenu() {
-        menuDao.updateMenu();
+    public void updateMenu(Menu menu) {
+        menuDao.updateMenu(menu);
     }
 
     public List<Menu> getMenu() {

@@ -1,6 +1,7 @@
 package com.foodAssistant.dao;
 
 import com.foodAssistant.domain.menu.Menu;
+import com.mysql.cj.exceptions.MysqlErrorNumbers;
 
 import java.util.List;
 
@@ -38,15 +39,15 @@ public interface IMenuDao {
     /**
      * 创建新的食物列表项
      */
-    void createMenu();
+    void createMenu(Menu menu);
 
     /**
      * 删除已有的食物列表项
      */
-    void deleteMenu();
+    void deleteMenu(Integer menuID);
 
     /**
      * 更新已有的食物列表项
      */
-    void updateMenu();
+    void updateMenu(Menu menu);
 }
