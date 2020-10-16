@@ -4,18 +4,20 @@ import com.foodAssistant.domain.Menu;
 
 import java.util.List;
 
-public interface IUserAccountService {
+public interface IUserAccountService extends IAccountService{
+    /**
+     * 创建饮食记录
+     */
+    void createRecord();
 
     /**
-     * 查询食物列表
+     * 删除饮食记录
      */
-    Menu getMenuByName(String foodName);
-    Menu getMenuById(Integer foodId);
-    List<Menu> getMenuByType(String foodType);
+    void deleteRecord();
 
     /**
-     * 记录饮食数据
+     * 更新饮食记录
      */
-    void record();
+    void updateRecord();
 
 }

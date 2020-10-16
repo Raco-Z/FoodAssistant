@@ -5,6 +5,7 @@ public class UserAccount {
     private String accountName;
     private Menu recommendedFood;
     private Menu recordedFood;
+    //private Integer priority;
 
     public Integer getAccountId() {
         return accountId;
