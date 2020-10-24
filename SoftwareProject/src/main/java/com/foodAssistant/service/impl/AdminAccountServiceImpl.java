@@ -6,7 +6,7 @@ import com.foodAssistant.service.IAdminAccount;
 
 import java.util.List;
 
-public class AdminAccount implements IAdminAccount {
+public class AdminAccountServiceImpl implements IAdminAccount {
     private IMenuDao menuDao;
 
     public void createMenu() {
