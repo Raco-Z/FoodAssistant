@@ -1,6 +1,6 @@
 package com.foodAssistant.service;
 
-public interface IAdminAccount extends IAccountService{
+public interface IAdminAccountService extends IAccountService{
     /**
      * 添加食物列表
      */
