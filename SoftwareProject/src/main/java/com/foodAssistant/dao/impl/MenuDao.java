@@ -10,7 +10,9 @@ import java.util.List;
  */
 public class MenuDao implements IMenuDao {
 
-    public List<Menu> getMenu() { return null; }
+    public List<Menu> getMenu() {
+        return null;
+    }
 
     public Menu getMenuById(Integer foodId) {
         return null;
