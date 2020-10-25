@@ -8,16 +8,11 @@ import java.util.List;
  * 处理和饮食记录有关的操作
  */
 public interface IRecordDao {
-    /**
-     * 查询全部饮食记录
-     * @return
-     */
+
     List<Record> getRecord();
 
     /**
      * 通过记录ID查询饮食记录
-     * @param recordId
-     * @return
      */
     Record getRecordById(Integer recordId);
 

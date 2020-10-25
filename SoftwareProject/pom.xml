@@ -9,6 +9,7 @@
     <version>1.0-SNAPSHOT</version>
     <packaging>jar</packaging>
     <dependencies>
+<<<<<<< HEAD
         <!-- https://mvnrepository.com/artifact/commons-dbutils/commons-dbutils -->
         <dependency>
             <groupId>commons-dbutils</groupId>
@@ -17,11 +18,19 @@
         </dependency>
 
 
+=======
+        <dependency>
+            <groupId>com.mchange</groupId>
+            <artifactId>c3p0</artifactId>
+            <version>0.9.5.2</version>
+        </dependency>
+>>>>>>> master
         <dependency>
             <groupId>mysql</groupId>
             <artifactId>mysql-connector-java</artifactId>
             <version>8.0.21</version>
         </dependency>
+<<<<<<< HEAD
 
         <!-- https://mvnrepository.com/artifact/com.mchange/c3p0 -->
         <dependency>
@@ -33,4 +42,13 @@
     </dependencies>
 
 
+=======
+        <dependency>
+            <groupId>junit</groupId>
+            <artifactId>junit</artifactId>
+            <version>4.12</version>
+            <scope>test</scope>
+        </dependency>
+    </dependencies>
+>>>>>>> master
 </project>

@@ -12,11 +12,14 @@ import java.util.List;
  * 处理食物列表的实现类
  */
 public class MenuDao implements IMenuDao {
+<<<<<<< HEAD
     private QueryRunner queryRunner;
 
     public void setQueryRunner(QueryRunner queryRunner) {
         this.queryRunner = queryRunner;
     }
+=======
+>>>>>>> master
 
     public List<Menu> getMenu() {
         try{

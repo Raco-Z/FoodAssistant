@@ -8,7 +8,7 @@ import com.foodAssistant.service.IUserAccountService;
 
 import java.util.List;
 
-public class UserAccountService implements IUserAccountService {
+public class UserAccountServiceImpl implements IUserAccountService {
     private IMenuDao menuDao;
     private IRecordDao recordDao;
 
