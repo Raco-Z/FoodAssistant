@@ -1,0 +1,21 @@
+creat table menu(
+	foodId integer primary key auto_increment,
+	foodName varchar(20),
+	foodType varchar(20)
+);
+
+insert into menu(foodName,foodType) values('rice','cereal');
+insert into menu(foodName,foodType) values('egg','eggs');
+insert into menu(foodName,foodType) values('milk','milk');
+
+creat table nutrition(
+	id integer primary key auto_increment,
+	calorie integer,
+	carbohydrate integer,
+	protein integer,
+	fat integer,
+);
+
+insert into nutrition(calorie,carbohydrate,protein,fat) values(116,26,3,0);
+insert into nutrition(calorie,carbohydrate,protein,fat) values(139,2,13,9);
+insert into nutrition(calorie,carbohydrate,protein,fat) values(54,3,3,2);
