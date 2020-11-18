@@ -10,7 +10,7 @@ import com.sun.xml.internal.fastinfoset.sax.Properties;
 import org.junit.Test;
 
 public class test {
-    @Test
+    /*@Test
     public void proxyTest() {
 
         ComboPooledDataSource dataSource = new ComboPooledDataSource();
@@ -27,5 +27,5 @@ public class test {
         AccountServiceProxy accountServiceProxy = new AccountServiceProxy(txManager);
         IAdminAccountService accountService = accountServiceProxy.getAccountService(IAdminAccountService.class);
         accountService.getMenu();
-    }
+    }*/
 }

@@ -1,0 +1,64 @@
+<component name="ArtifactManager">
+  <artifact type="exploded-war" name="SoftwareProject:war exploded">
+    <output-path>$PROJECT_DIR$/target/SoftwareProject-1.0-SNAPSHOT</output-path>
+    <properties id="maven-jee-properties">
+      <options>
+        <exploded>true</exploded>
+        <module>SoftwareProject</module>
+        <packaging>war</packaging>
+      </options>
+    </properties>
+    <root id="root">
+      <element id="directory" name="WEB-INF">
+        <element id="directory" name="classes">
+          <element id="module-output" name="SoftwareProject" />
+        </element>
+        <element id="directory" name="lib">
+          <element id="library" level="project" name="Maven: com.mchange:c3p0:0.9.5.2" />
+          <element id="library" level="project" name="Maven: com.mchange:mchange-commons-java:0.2.11" />
+          <element id="library" level="project" name="Maven: mysql:mysql-connector-java:8.0.21" />
+          <element id="library" level="project" name="Maven: com.google.protobuf:protobuf-java:3.11.4" />
+          <element id="library" level="project" name="Maven: org.springframework:spring-web:5.0.2.RELEASE" />
+          <element id="library" level="project" name="Maven: org.springframework:spring-beans:5.0.2.RELEASE" />
+          <element id="library" level="project" name="Maven: org.springframework:spring-core:5.0.2.RELEASE" />
+          <element id="library" level="project" name="Maven: org.springframework:spring-jcl:5.0.2.RELEASE" />
+          <element id="library" level="project" name="Maven: org.springframework:spring-webmvc:5.0.2.RELEASE" />
+          <element id="library" level="project" name="Maven: org.springframework:spring-aop:5.0.2.RELEASE" />
+          <element id="library" level="project" name="Maven: org.springframework:spring-expression:5.0.2.RELEASE" />
+          <element id="library" level="project" name="Maven: org.springframework:spring-context:5.0.2.RELEASE" />
+          <element id="library" level="project" name="Maven: javax.servlet.jsp:jsp-api:2.0" />
+          <element id="library" level="project" name="Maven: javax.servlet:servlet-api:2.5" />
+          <element id="library" level="project" name="Maven: com.fasterxml.jackson.core:jackson-databind:2.9.0" />
+          <element id="library" level="project" name="Maven: com.fasterxml.jackson.core:jackson-core:2.9.0" />
+          <element id="library" level="project" name="Maven: com.fasterxml.jackson.core:jackson-annotations:2.9.0" />
+          <element id="library" level="project" name="Maven: commons-io:commons-io:2.5" />
+          <element id="library" level="project" name="Maven: commons-fileupload:commons-fileupload:1.4" />
+          <element id="library" level="project" name="Maven: com.sun.jersey:jersey-core:1.18.1" />
+          <element id="library" level="project" name="Maven: com.sun.jersey:jersey-client:1.18.1" />
+          <element id="library" level="project" name="Maven: io.springfox:springfox-swagger2:2.2.2" />
+          <element id="library" level="project" name="Maven: org.mapstruct:mapstruct:1.0.0.CR1" />
+          <element id="library" level="project" name="Maven: io.swagger:swagger-annotations:1.5.3" />
+          <element id="library" level="project" name="Maven: io.swagger:swagger-models:1.5.3" />
+          <element id="library" level="project" name="Maven: io.springfox:springfox-spi:2.2.2" />
+          <element id="library" level="project" name="Maven: io.springfox:springfox-core:2.2.2" />
+          <element id="library" level="project" name="Maven: io.springfox:springfox-schema:2.2.2" />
+          <element id="library" level="project" name="Maven: io.springfox:springfox-swagger-common:2.2.2" />
+          <element id="library" level="project" name="Maven: io.springfox:springfox-spring-web:2.2.2" />
+          <element id="library" level="project" name="Maven: com.google.guava:guava:18.0" />
+          <element id="library" level="project" name="Maven: com.fasterxml:classmate:1.2.0" />
+          <element id="library" level="project" name="Maven: org.slf4j:slf4j-api:1.7.12" />
+          <element id="library" level="project" name="Maven: org.aspectj:aspectjrt:1.8.6" />
+          <element id="library" level="project" name="Maven: org.aspectj:aspectjweaver:1.8.6" />
+          <element id="library" level="project" name="Maven: org.springframework.plugin:spring-plugin-core:1.2.0.RELEASE" />
+          <element id="library" level="project" name="Maven: org.springframework.plugin:spring-plugin-metadata:1.2.0.RELEASE" />
+          <element id="library" level="project" name="Maven: org.springframework.hateoas:spring-hateoas:0.18.0.RELEASE" />
+          <element id="library" level="project" name="Maven: io.springfox:springfox-swagger-ui:2.2.2" />
+        </element>
+      </element>
+      <element id="directory" name="META-INF">
+        <element id="file-copy" path="$PROJECT_DIR$/target/SoftwareProject-1.0-SNAPSHOT/META-INF/MANIFEST.MF" />
+      </element>
+      <element id="javaee-facet-resources" facet="SoftwareProject/web/webapp" />
+    </root>
+  </artifact>
+</component>

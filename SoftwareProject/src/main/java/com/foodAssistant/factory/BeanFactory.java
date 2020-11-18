@@ -1,5 +1,9 @@
 package com.foodAssistant.factory;
 
+import com.sun.jersey.spi.inject.Errors;
+
+import java.io.IOError;
+import java.io.IOException;
 import java.io.InputStream;
 import java.util.Enumeration;
 import java.util.HashMap;
@@ -20,18 +24,20 @@ public class BeanFactory {
             props = new Properties();
             InputStream inputStream = BeanFactory.class.getClassLoader().getResourceAsStream("bean.properties");
             props.load(inputStream);
+            System.out.println(props);
             beans = new HashMap<String, Object>();
             Enumeration keys = props.keys();
             while(keys.hasMoreElements())
             {
                 String key = keys.nextElement().toString();
+                System.out.println(key);
                 String beanPath = props.getProperty(key);
+                System.out.println(beanPath);
                 Object value = Class.forName(beanPath).newInstance();
                 beans.put(key,value);
             }
         }
-        catch (Exception e)
-        {
+        catch (Exception e) {
             throw new ExceptionInInitializerError("wrong with init properties");
         }
     }

@@ -7,9 +7,9 @@ public class TransactionManagerUtils {
 
     private ConnectionUtils connectionUtils;
 
-    public TransactionManagerUtils(ConnectionUtils connectionUtils){
+    /*public TransactionManagerUtils(ConnectionUtils connectionUtils){
         this.connectionUtils = connectionUtils;
-    }
+    }*/
 
     public void setConnectionUtils(){
         this.connectionUtils = connectionUtils;
