@@ -1,13 +1,16 @@
 package com.foodAssistant.service.impl;
 
 import com.foodAssistant.dao.IMenuDao;
+import com.foodAssistant.dao.impl.MenuDao;
 import com.foodAssistant.domain.menu.Menu;
+import com.foodAssistant.service.IAccountService;
 import com.foodAssistant.service.IAdminAccountService;
 
 import java.util.List;
 
 public class AdminAccountServiceImpl implements IAdminAccountService {
-    private IMenuDao menuDao;
+    private IMenuDao menuDao = new MenuDao();
+
 
     public void createMenu(Menu menu) {
         menuDao.createMenu(menu);
