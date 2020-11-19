@@ -2,7 +2,7 @@ package com.foodAssistant.factory;
 
 import com.sun.jersey.spi.inject.Errors;
 
-import java.io.IOError;
+
 import java.io.IOException;
 import java.io.InputStream;
 import java.util.Enumeration;
@@ -10,6 +10,7 @@ import java.util.HashMap;
 import java.util.Map;
 import java.util.Properties;
 
+//已交给spring
 public class BeanFactory {
 
     //装载配置文件的Properties对象
@@ -18,6 +19,7 @@ public class BeanFactory {
     //IoC容器，存放bean对象
     private static Map<String,Object> beans;
 
+    /*
     //给props赋值，将bean对象装载到IoC容器中
     static {
         try {
@@ -46,5 +48,7 @@ public class BeanFactory {
     public static Object getBean(String beanName){
         return beans.get(beanName);
     }
+
+     */
 
 }

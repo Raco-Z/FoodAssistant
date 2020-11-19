@@ -7,6 +7,7 @@ import java.lang.reflect.Proxy;
 /**
  * 创建代理对象
  */
+//已交给Spring
 public class AccountServiceProxy {
 
     private TransactionManagerUtils txManager;

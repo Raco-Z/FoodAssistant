@@ -8,6 +8,9 @@ import com.foodAssistant.service.IUserAccountService;
 
 import java.util.List;
 
+/**
+ * 用户业务层实现类
+ */
 public class UserAccountServiceImpl implements IUserAccountService {
     private IMenuDao menuDao;
     private IRecordDao recordDao;

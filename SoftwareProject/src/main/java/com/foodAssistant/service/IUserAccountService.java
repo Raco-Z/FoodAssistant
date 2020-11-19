@@ -4,6 +4,9 @@ import com.foodAssistant.domain.record.Record;
 
 import java.util.List;
 
+/**
+ * 用户业务层接口
+ */
 public interface IUserAccountService extends IAccountService{
     /**
      * 查询所有饮食记录

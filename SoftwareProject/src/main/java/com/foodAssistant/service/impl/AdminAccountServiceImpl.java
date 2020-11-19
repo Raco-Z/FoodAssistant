@@ -8,9 +8,15 @@ import com.foodAssistant.service.IAdminAccountService;
 
 import java.util.List;
 
+/**
+ * 管理员业务层实现类
+ */
 public class AdminAccountServiceImpl implements IAdminAccountService {
-    private IMenuDao menuDao = new MenuDao();
+    private IMenuDao menuDao ;
 
+    public void setMenuDao(IMenuDao menuDao) {
+        this.menuDao = menuDao;
+    }
 
     public void createMenu(Menu menu) {
         menuDao.createMenu(menu);

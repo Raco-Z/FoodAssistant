@@ -3,6 +3,9 @@ package com.foodAssistant.service;
 
 import com.foodAssistant.domain.menu.Menu;
 
+/**
+ * 管理员业务层接口
+ */
 public interface IAdminAccountService extends IAccountService{
 
     /**
