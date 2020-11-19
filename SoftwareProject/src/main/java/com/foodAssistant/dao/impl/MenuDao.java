@@ -17,7 +17,7 @@ import java.util.List;
 public class MenuDao implements IMenuDao {
 
     private DataSource dataSource = new ComboPooledDataSource();
-    private ConnectionUtils connectionUtils = new ConnectionUtils(dataSource);
+    private ConnectionUtils connectionUtils = new ConnectionUtils();
 
     private QueryRunner queryRunner = new QueryRunner();
 

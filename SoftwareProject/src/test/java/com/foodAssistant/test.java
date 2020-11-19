@@ -17,8 +17,8 @@ public class test {
     public void proxyTest()   {
 
         DataSource dataSource = new ComboPooledDataSource();
-        ConnectionUtils connectionUtils = new ConnectionUtils(dataSource);
-        TransactionManagerUtils txManager = new TransactionManagerUtils(connectionUtils);
+        ConnectionUtils connectionUtils = new ConnectionUtils();
+        TransactionManagerUtils txManager = new TransactionManagerUtils();
         AccountServiceProxy accountServiceProxy = new AccountServiceProxy(txManager);
         IAdminAccountService accountService = accountServiceProxy.getAccountService(IAdminAccountService.class);
         System.out.println(accountService.getMenu());
