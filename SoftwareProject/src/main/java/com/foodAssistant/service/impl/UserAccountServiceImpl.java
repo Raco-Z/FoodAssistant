@@ -3,6 +3,7 @@ package com.foodAssistant.service.impl;
 import com.foodAssistant.dao.IMenuDao;
 import com.foodAssistant.dao.IRecordDao;
 import com.foodAssistant.domain.menu.Menu;
+import com.foodAssistant.domain.menu.MenuNutrition;
 import com.foodAssistant.domain.record.Record;
 import com.foodAssistant.service.IUserAccountService;
 
@@ -23,7 +24,7 @@ public class UserAccountServiceImpl implements IUserAccountService {
         this.recordDao = recordDao;
     }
 
-    public List<Menu> getMenu(){
+    public List<MenuNutrition> getMenu(){
         return menuDao.getMenu();
     }
 

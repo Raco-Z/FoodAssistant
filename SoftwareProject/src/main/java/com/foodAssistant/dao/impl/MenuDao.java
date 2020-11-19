@@ -2,6 +2,7 @@ package com.foodAssistant.dao.impl;
 
 import com.foodAssistant.dao.IMenuDao;
 import com.foodAssistant.domain.menu.Menu;
+import com.foodAssistant.domain.menu.MenuNutrition;
 import com.foodAssistant.utils.ConnectionUtils;
 import com.mchange.v2.c3p0.ComboPooledDataSource;
 import org.apache.commons.dbutils.QueryRunner;
@@ -32,9 +33,11 @@ public class MenuDao implements IMenuDao {
         this.queryRunner = queryRunner;
     }
 
-    public List<Menu> getMenu() {
+    public List<MenuNutrition> getMenu() {
         try{
-            return queryRunner.query(connectionUtils.getConnection(),"select m.id as foodId,m.foodname,m.foodtype from Menu m;",new BeanListHandler<Menu>(Menu.class));
+            return queryRunner.query(connectionUtils.getConnection()
+                    ,"select m.id as foodId,m.foodname,m.foodtype,n.protein,n.calorie,n.fat from Menu m,nutrition n where m.id=n.fid;"
+                    ,new BeanListHandler<MenuNutrition>(MenuNutrition.class));
         }catch (Exception e) {
             throw new RuntimeException(e);
         }
@@ -42,7 +45,9 @@ public class MenuDao implements IMenuDao {
 
     public Menu getMenuById(Integer foodId) {
         try{
-            return queryRunner.query(connectionUtils.getConnection(),"select  m.id as foodId,m.foodname,m.foodtype from Menu m where id = ?;",new BeanHandler<Menu>(Menu.class),foodId);
+            return queryRunner.query(connectionUtils.getConnection()
+                    ,"select  m.id as foodId,m.foodname,m.foodtype from Menu m where id = ?;"
+                    ,new BeanHandler<Menu>(Menu.class),foodId);
         }catch (Exception e) {
             throw new RuntimeException(e);
         }
@@ -64,10 +69,20 @@ public class MenuDao implements IMenuDao {
         }
     }
 
-    public void createMenu(Menu menu) {
+
+    public void createMenu(MenuNutrition menuNutrition) {
         try{
-            queryRunner.update("insert into Menu(foodname,foodtype,protein,calorie,fat) values(?,?,?,?,?);",
-                    menu.getFoodName(),menu.getFoodType(),menu.getFoodNutrition().getProtein(),menu.getFoodNutrition().getCalorie(),menu.getFoodNutrition().getFat());
+            //可以使用Mybatis大幅简化
+            queryRunner.update(connectionUtils.getConnection(),
+                    "insert into Menu(foodname,foodtype) values(?,?);",
+                    menuNutrition.getFoodName(),menuNutrition.getFoodType());
+            Menu menu = queryRunner.query(connectionUtils.getConnection(),
+                    "select m.id as foodId from menu m where m.foodname=?",
+                    new BeanHandler<Menu>(Menu.class),
+                    menuNutrition.getFoodName());
+            queryRunner.update(connectionUtils.getConnection(),
+                    "insert into nutrition(fid,protein,calorie,fat) values(?,?,?,?)"
+                    ,menu.getFoodId(),menuNutrition.getProtein(),menuNutrition.getCalorie(),menuNutrition.getFat());
         }catch (Exception e){
             throw new RuntimeException(e);
         }
@@ -75,6 +90,8 @@ public class MenuDao implements IMenuDao {
 
     public void deleteMenu(Integer menuId) {
         try{
+
+            queryRunner.update(connectionUtils.getConnection(),"delete from nutrition where fid=?",menuId);
             queryRunner.update(connectionUtils.getConnection(),"delete from Menu where id=?;",menuId);
         }catch (Exception e){
             throw new RuntimeException(e);
@@ -83,8 +100,8 @@ public class MenuDao implements IMenuDao {
 
     public void updateMenu(Menu menu) {
         try{
-            queryRunner.update("update Menu set name=?,Type=?,protein=?,calorie=?,fat=? where id=? ",
-                    menu.getFoodName(),menu.getFoodType(),menu.getFoodNutrition().getProtein(),menu.getFoodNutrition().getCalorie(),menu.getFoodNutrition().getFat(),menu.getFoodId());
+            queryRunner.update(connectionUtils.getConnection(),"update Menu set foodname=?,foodtype=? where id=? ",
+                    menu.getFoodName(),menu.getFoodType(),menu.getFoodId());
         }catch (Exception e){
             throw new RuntimeException(e);
         }

@@ -4,7 +4,7 @@ public class Menu {
     private Integer foodId;
     private String foodName;
     private String foodType;
-    private Nutrition foodNutrition;
+
 
     public Integer getFoodId() {
         return foodId;
@@ -30,13 +30,6 @@ public class Menu {
         this.foodType = foodType;
     }
 
-    public Nutrition getFoodNutrition() {
-        return foodNutrition;
-    }
-
-    public void setFoodNutrition(Nutrition foodNutrition) {
-        this.foodNutrition = foodNutrition;
-    }
 
     @Override
     public String toString() {
@@ -44,7 +37,6 @@ public class Menu {
                 "foodId=" + foodId +
                 ", foodName='" + foodName + '\'' +
                 ", foodType='" + foodType + '\'' +
-                ", foodNutrition=" + foodNutrition +
                 '}';
     }
 }

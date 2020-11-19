@@ -29,7 +29,9 @@ public class RecordDao implements IRecordDao {
 
     public List<Record> getRecord() {
         try{
-            return queryRunner.query(connectionUtils.getConnection(),"select m.id as foodId,m.foodname,m.foodtype from Menu m;",new BeanListHandler<Record>(Record.class));
+            return queryRunner.query(connectionUtils.getConnection()
+                    , "select * from Record;"
+                    ,new BeanListHandler<Record>(Record.class));
         }catch (Exception e) {
             throw new RuntimeException(e);
         }
@@ -37,7 +39,9 @@ public class RecordDao implements IRecordDao {
 
     public Record getRecordById(Integer recordId) {
         try{
-            return queryRunner.query(connectionUtils.getConnection(),"select m.id as foodId,m.foodname,m.foodtype from Menu m;",new BeanHandler<Record>(Record.class));
+            return queryRunner.query(connectionUtils.getConnection()
+                    ,"select m.id as foodId,m.foodname,m.foodtype from Menu m;"
+                    ,new BeanHandler<Record>(Record.class));
         }catch (Exception e) {
             throw new RuntimeException(e);
         }
