@@ -2,11 +2,13 @@ package com.foodAssistant.dao.impl;
 
 import com.foodAssistant.dao.IMenuDao;
 import com.foodAssistant.domain.menu.Menu;
-import com.foodAssistant.domain.menu.Nutrition;
-import com.foodAssistant.factory.BeanFactory;
+import com.foodAssistant.utils.ConnectionUtils;
+import com.mchange.v2.c3p0.ComboPooledDataSource;
+import org.apache.commons.dbutils.QueryRunner;
+import org.apache.commons.dbutils.handlers.BeanHandler;
+import org.apache.commons.dbutils.handlers.BeanListHandler;
 
-import javax.swing.*;
-import java.util.ArrayList;
+import javax.sql.DataSource;
 import java.util.List;
 
 /**
@@ -14,43 +16,68 @@ import java.util.List;
  */
 public class MenuDao implements IMenuDao {
 
-    private Menu m = (Menu) BeanFactory.getBean("menu");
+    private DataSource dataSource = new ComboPooledDataSource();
+    private ConnectionUtils connectionUtils = new ConnectionUtils(dataSource);
+
+    private QueryRunner queryRunner = new QueryRunner();
+
+
 
     public List<Menu> getMenu() {
-        m.setFoodId(001);
-        m.setFoodName("chicken");
-        Nutrition n = (Nutrition)BeanFactory.getBean("nutrition");
-        n.setCalorie(0);
-        n.setFat(1);
-        n.setProtein(2);
-        m.setFoodNutrition(n);
-        m.setFoodType("Meat");
-        List<Menu> ml = new ArrayList<>();
-        ml.add(m);
-        return ml;
+        try{
+            return queryRunner.query(connectionUtils.getConnection(),"select m.id as foodId,m.foodname,m.foodtype from Menu m;",new BeanListHandler<Menu>(Menu.class));
+        }catch (Exception e) {
+            throw new RuntimeException(e);
+        }
     }
 
     public Menu getMenuById(Integer foodId) {
-        return null;
+        try{
+            return queryRunner.query("select * from Menu where id = ?;",new BeanHandler<Menu>(Menu.class),foodId);
+        }catch (Exception e) {
+            throw new RuntimeException(e);
+        }
     }
 
     public Menu getMenuByName(String foodName) {
-        return null;
+        try{
+            return queryRunner.query("select * from Menu where name = ?;",new BeanHandler<Menu>(Menu.class),foodName);
+        }catch (Exception e) {
+            throw new RuntimeException(e);
+        }
     }
 
     public List<Menu> getMenuByType(String foodType) {
-        return null;
+        try{
+            return queryRunner.query("select * from Menu where type = ?;",new BeanListHandler<Menu>(Menu.class),foodType);
+        }catch (Exception e) {
+            throw new RuntimeException(e);
+        }
     }
 
-    public void createMenu() {
-
+    public void createMenu(Menu menu) {
+        try{
+            queryRunner.update("insert into Menu(name,type,protein,calorie,fat) values(?,?,?,?,?);",
+                    menu.getFoodName(),menu.getFoodType(),menu.getFoodNutrition().getProtein(),menu.getFoodNutrition().getCalorie(),menu.getFoodNutrition().getFat());
+        }catch (Exception e){
+            throw new RuntimeException(e);
+        }
     }
 
-    public void deleteMenu() {
-
+    public void deleteMenu(Integer menuId) {
+        try{
+            queryRunner.update("delete from Menu where id=?;",menuId);
+        }catch (Exception e){
+            throw new RuntimeException(e);
+        }
     }
 
-    public void updateMenu() {
-
+    public void updateMenu(Menu menu) {
+        try{
+            queryRunner.update("update Menu set name=?,Type=?,protein=?,calorie=?,fat=? where id=? ",
+                    menu.getFoodName(),menu.getFoodType(),menu.getFoodNutrition().getProtein(),menu.getFoodNutrition().getCalorie(),menu.getFoodNutrition().getFat(),menu.getFoodId());
+        }catch (Exception e){
+            throw new RuntimeException(e);
+        }
     }
 }

@@ -14,10 +14,11 @@
           <element id="module-output" name="SoftwareProject" />
         </element>
         <element id="directory" name="lib">
-          <element id="library" level="project" name="Maven: com.mchange:c3p0:0.9.5.2" />
-          <element id="library" level="project" name="Maven: com.mchange:mchange-commons-java:0.2.11" />
+          <element id="library" level="project" name="Maven: commons-dbutils:commons-dbutils:1.6" />
           <element id="library" level="project" name="Maven: mysql:mysql-connector-java:8.0.21" />
           <element id="library" level="project" name="Maven: com.google.protobuf:protobuf-java:3.11.4" />
+          <element id="library" level="project" name="Maven: com.mchange:c3p0:0.9.5.2" />
+          <element id="library" level="project" name="Maven: com.mchange:mchange-commons-java:0.2.11" />
           <element id="library" level="project" name="Maven: org.springframework:spring-web:5.0.2.RELEASE" />
           <element id="library" level="project" name="Maven: org.springframework:spring-beans:5.0.2.RELEASE" />
           <element id="library" level="project" name="Maven: org.springframework:spring-core:5.0.2.RELEASE" />

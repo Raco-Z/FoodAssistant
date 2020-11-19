@@ -1,0 +1,12 @@
+<c3p0-config>
+    <!--默认配置-->
+    <default-config>
+        <!--连接信息-->
+        <property name="driverClass">com.mysql.cj.jdbc.Driver</property>
+        <property name="jdbcUrl">jdbc:mysql://localhost:3306/software?serverTimezone=UTC</property>
+        <property name="user">root</property>
+        <property name="password">113106</property>
+        <!--连接池配置参数-->
+        <!--不设置c3p0会有默认的设置-->
+    </default-config>
+</c3p0-config>
