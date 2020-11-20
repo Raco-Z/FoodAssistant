@@ -8,10 +8,10 @@
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
 <html>
 <head>
-    <title>TEST</title>
+    <title>Jump to UI</title>
 </head>
 <body>
-    <h3>This Is A Test</h3>
-    <a href="user/" type="GET">click here to test</a><br>
+    <h3>Jumping Link</h3>
+    <a href="swagger-ui.html" type="GET">click here to jump</a><br>
 </body>
 </html>
