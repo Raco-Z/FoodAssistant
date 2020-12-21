@@ -4,6 +4,8 @@ public class Record {
     private Integer recordId;
     private String foodName;
 
+
+
     public Integer getRecordId() {
         return recordId;
     }

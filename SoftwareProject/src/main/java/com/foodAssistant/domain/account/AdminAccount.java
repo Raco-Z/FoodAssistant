@@ -21,4 +21,5 @@ public class AdminAccount {
     public void setAccountName(String accountName) {
         this.accountName = accountName;
     }
+
 }

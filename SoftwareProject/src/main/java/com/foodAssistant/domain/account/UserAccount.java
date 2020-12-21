@@ -8,6 +8,8 @@ public class UserAccount {
     private Integer accountId;
     //普通用户的名称
     private String accountName;
+    //普通用户的密码
+    private String accountPassword;
     //用户的推荐食谱
     private Menu recommendedFood;
     //用户的饮食数据
@@ -26,9 +28,7 @@ public class UserAccount {
         return accountName;
     }
 
-    public void setAccountName(String accountName) {
-        this.accountName = accountName;
-    }
+    public void setAccountName(String accountName) { this.accountName = accountName; }
 
     public Menu getRecommendedFood() {
         return recommendedFood;
@@ -46,11 +46,16 @@ public class UserAccount {
         this.recordedFood = recordedFood;
     }
 
+    public String getAccountPassword() { return accountPassword; }
+
+    public void setAccountPassword(String accountPassword) { this.accountPassword = accountPassword; }
+
     @Override
     public String toString() {
-        return "Account{" +
+        return "UserAccount{" +
                 "accountId=" + accountId +
                 ", accountName='" + accountName + '\'' +
+                ", accountPassword='" + accountPassword + '\'' +
                 ", recommendedFood=" + recommendedFood +
                 ", recordedFood=" + recordedFood +
                 '}';

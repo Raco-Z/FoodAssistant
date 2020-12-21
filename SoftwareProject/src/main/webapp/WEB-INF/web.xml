@@ -20,10 +20,6 @@
         <url-pattern>/</url-pattern>
     </servlet-mapping>
 
-    <servlet-mapping>
-        <servlet-name>dispatcherServlet</servlet-name>
-        <url-pattern>*.do</url-pattern>
-    </servlet-mapping>
 
 
     <!--解决中文乱码-->
