@@ -4,6 +4,10 @@
         "http://mybatis.org/dtd/mybatis-3-config.dtd">
 <configuration>
 
+    <!-- 别名-->
+    <typeAliases>
+        <package name="com.foodAssistant.domain"/>
+    </typeAliases>
     <!--配置环境-->
     <environments default="mysql">
         <!-- 配置mysql的环境-->
@@ -14,9 +18,9 @@
             <!--配置连接池-->
             <dataSource type="POOLED">
                 <property name="driver" value="com.mysql.cj.jdbc.Driver"></property>
-                <property name="url" value="jdbc:mysql://localhost:3306/test?serverTimezone=UTC "></property>
+                <property name="url" value="jdbc:mysql://localhost:3306/software?serverTimezone=UTC "></property>
                 <property name="username" value="root"></property>
-                <property name="password" value="grys784482"></property>
+                <property name="password" value="113106"></property>
             </dataSource>
         </environment>
     </environments>

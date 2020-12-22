@@ -1,9 +1,9 @@
 package com.foodAssistant.controller;
 
 
-import com.foodAssistant.dao.IUserDao;
-import com.foodAssistant.dao.impl.UserDao;
 import com.foodAssistant.domain.account.UserAccount;
+import com.foodAssistant.service.IUserAccountService;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
@@ -11,7 +11,6 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.servlet.ModelAndView;
 
 
-import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import java.io.IOException;
 import java.io.PrintWriter;
@@ -19,6 +18,9 @@ import java.io.PrintWriter;
 @Controller
 @RequestMapping("/login")
 public class LoginController {
+
+    @Autowired
+    private IUserAccountService infuser;
 
     //利用username在数据库查找，如果存在则检查密码
     //查询一个 where = username -> Useraccount : findUserByName()
@@ -32,7 +34,6 @@ public class LoginController {
         System.out.println("Password:"+password);
         System.out.println("Level:"+level);
         //在数据库中检查用户是否合法
-        IUserDao infuser = new UserDao();
         response.setContentType("text/html;charset=utf-8");
         PrintWriter out = response.getWriter();
         if (username.equals("root"))
@@ -96,7 +97,6 @@ public class LoginController {
         System.out.println("Register Password:"+password);
         System.out.println("Register Level:"+level);
         //通过用户名在数据库查重
-        IUserDao infuser = new UserDao();
         response.setContentType("text/html;charset=utf-8");
         PrintWriter out = response.getWriter();
         if(infuser.findUserByName(username)!=null)

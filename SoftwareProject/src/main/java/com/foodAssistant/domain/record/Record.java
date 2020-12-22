@@ -4,6 +4,8 @@ public class Record {
     private Integer recordId;
     private String userName;
     private String foodName;
+    //食物的重量
+    private Integer foodWeight;
 
     public String getUserName() {
         return userName;
@@ -12,8 +14,6 @@ public class Record {
     public void setUserName(String userName) {
         this.userName = userName;
     }
-
-    private Integer foodWeight;
 
 
     public Integer getRecordId() {

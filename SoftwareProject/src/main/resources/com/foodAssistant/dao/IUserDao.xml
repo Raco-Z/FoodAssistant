@@ -3,33 +3,55 @@
         PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
         "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="com.foodAssistant.dao.IUserDao">
+    <resultMap id="userMap" type="com.foodAssistant.domain.account.UserAccount">
+        <id property="accountId" column="id"></id>
+        <result property="accountName" column="username"></result>
+        <result property="accountPassword" column="password"></result>
+        <result property="height" column="height"></result>
+        <result property="weight" column="weight"></result>
+    </resultMap>
+
+    <resultMap id="userRecordMap" type="UserAccount">
+        <id property="accountId" column="id"></id>
+        <result property="accountName" column="username"></result>
+        <result property="accountPassword" column="password"></result>
+        <result property="height" column="height"></result>
+        <result property="weight" column="weight"></result>
+        <collection property="recordedFood" ofType="record">
+            <id property="recordId" column="rid"></id>
+            <result property="foodName" column="foodname"></result>
+            <result property="userName" column="rname"></result>
+            <result property="foodWeight" column="foodweight"></result>
+        </collection>
+    </resultMap>
+    
     <!--根据用户名查询 -->
-    <select id="findUserByName" parameterType="STRING" resultType="com.foodAssistant.domain.account.UserAccount">
-        select * from useraccount where userName=#{uname};
+    <select id="findUserByName" parameterType="STRING" resultMap="userMap">
+        select * from user where username=#{userName};
+    </select>
+
+    <!--根据用户ID查询-->
+    <select id="getUserById" parameterType="INT" resultMap="userMap">
+        select * from user where id = #{userId}
     </select>
 
     <!--查询全部用户 -->
-    <select id="findAll" resultType="com.foodAssistant.domain.account.UserAccount">
-        select * from useraccount
+    <select id="findAll" resultMap="userMap">
+        select * from user
     </select>
 
     <!-- 创建新的用户-->
-    <insert id="createUser" parameterType="com.foodAssistant.domain.account.UserAccount">
+    <insert id="createUser" parameterType="UserAccount">
         <!--配置保存时获得插入的id-->
-        <selectKey resultType="INT" keyProperty="accountId" keyColumn="accountId" order="AFTER">
+        <selectKey resultType="INT" keyProperty="accountId" keyColumn="id" order="AFTER">
             select last_insert_id();
         </selectKey>
-        insert into useraccount(accountName,accountPassword) values (#{accountName},#{accountPassword})
+        insert into user(username,password) values (#{accountName},#{accountPassword})
     </insert>
 
-    <!-- 记录饮食-->
-    <insert id="record" parameterType="com.foodAssistant.domain.record.Record">
-        insert into record(foodName,foodWeight)values (#{foodName},#{foodWeight});
-    </insert>
-
-    <!-- 查询所有饮食记录-->
-    <select id="findAllRecord" parameterType="STRING" resultType="com.foodAssistant.domain.record.Record">
-        select * from record where username=#{uname};
-    </select>
+    <!--更新用户-->
+    <update id="updateUser" parameterType="UserAccount">
+        update user set username=#{accountName},password=#{accountPassword},height=#{height},weight=#{weight} where id=#{accountId};
+    </update>
 
 </mapper>

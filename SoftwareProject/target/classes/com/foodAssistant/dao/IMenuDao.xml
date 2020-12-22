@@ -3,38 +3,50 @@
         PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
         "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="com.foodAssistant.dao.IMenuDao">
+    <resultMap id="menuMap" type="MenuNutrition">
+        <id property="foodId" column="id"></id>
+        <result property="foodName" column="foodname"></result>
+        <result property="foodType" column="foodtype"></result>
+        <result property="protein" column="protein"></result>
+        <result property="calorie" column="calorie"></result>
+        <result property="fat" column="fat"></result>
+        <result property="carbohydrate" column="carbohydrate"></result>
+    </resultMap>
     <!-- 查询所有食物列表-->
-    <select id="getMenu" resultType="com.foodAssistant.domain.menu.MenuNutrition">
-        select * from menunutrition;
+    <select id="getMenu" resultMap="menuMap">
+        select * from menu;
     </select>
 
     <!--通过食物Id查询-->
-    <select id="getMenuById" parameterType="INT" resultType="com.foodAssistant.domain.menu.Menu">
-        select * from menu where foodId = #{fid};
+    <select id="getMenuById" parameterType="INT" resultMap="menuMap">
+        select * from menu where id = #{foodId};
     </select>
 
     <!--根据食物名称查询-->
-    <select id="getMenuByName" parameterType="string" resultType="com.foodAssistant.domain.menu.Menu">
-        select * from menu where foodName like %${foodName}%;
+    <!--使用时加模糊条件%%-->
+    <select id="getMenuByName" parameterType="string" resultMap="menuMap">
+        select * from menu where foodname like #{foodName};
     </select>
 
     <!--根据食物类型查询-->
-    <select id="getMenuByType" parameterType="string" resultType="com.foodAssistant.domain.menu.Menu">
-        select * from menu where foodType = #{ftype};
+    <select id="getMenuByType" parameterType="string" resultMap="menuMap">
+        select * from menu where foodtype = #{foodType};
     </select>
 
     <!-- 创建新的食物列表项-->
-    <insert id="creatMenu" parameterType="com.foodAssistant.domain.menu.MenuNutrition">
-        insert into menunutrition(foodName,foodType,protein,calorie,fat)values(#{foodName},#{foodType},#{protein},#{calorie},#{fat});
+    <insert id="creatMenu" parameterType="MenuNutrition">
+        insert into menu(foodName,foodType,protein,calorie,fat,carbohydrate)
+        values(#{foodName},#{foodType},#{protein},#{calorie},#{fat},#{carbohydrate});
     </insert>
 
     <!--删除已有的食物列表项-->
     <delete id="deleteMenu" parameterType="INT">
-        delete from menu where foodId=#{fid}
+        delete from menu where id = #{foodId}
     </delete>
 
     <!--更新已有的食物列表项-->
-    <update id="updateMenu" parameterType="com.foodAssistant.domain.menu.Menu">
-        update menu set foodName=#{foodName},foodType=#{foodType} where foodId=#{foodId};
+    <update id="updateMenu" parameterType="MenuNutrition">
+        update menu set foodName = #{foodName},foodType = #{foodType},protein = #{protein},
+        calorie = #{calorie},fat = #{fat},carbohydrate = #{carbohydrate} where id=#{foodId};
     </update>
 </mapper>

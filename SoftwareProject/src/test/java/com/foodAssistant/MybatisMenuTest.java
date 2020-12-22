@@ -1,8 +1,8 @@
 package com.foodAssistant;
 
 
-import com.foodAssistant.dao.IUserDao;
-import com.foodAssistant.domain.account.UserAccount;
+import com.foodAssistant.dao.IMenuDao;
+import com.foodAssistant.domain.menu.MenuNutrition;
 import org.apache.ibatis.io.Resources;
 import org.apache.ibatis.session.SqlSession;
 import org.apache.ibatis.session.SqlSessionFactory;
@@ -12,23 +12,22 @@ import org.junit.Before;
 import org.junit.Test;
 
 import java.io.InputStream;
-import java.util.Date;
 import java.util.List;
 
-public class MybatisTest {
+public class MybatisMenuTest {
     private InputStream in;
-    private IUserDao userDao;
+    private IMenuDao menuDao;
 
     @Before//用于在测试方法执行之前执行
     public void init()throws Exception{
         //1.读取配置文件，生成字节输入流
-        in = Resources.getResourceAsStream("SqlMapConfig.xml");
+        in = Resources.getResourceAsStream("mybatisConfig.xml");
         //2.获取SqlSessionFactory
         SqlSessionFactory factory = new SqlSessionFactoryBuilder().build(in);
         //3.获取SqlSession对象
         SqlSession sqlSession = factory.openSession();
         //4.获取dao的代理对象
-        userDao = sqlSession.getMapper(IUserDao.class);
+        menuDao = sqlSession.getMapper(IMenuDao.class);
     }
 
     @After//用于在测试方法执行之后执行
@@ -39,22 +38,24 @@ public class MybatisTest {
 
     @Test
     public void testSave(){
-        UserAccount user = new UserAccount();
-        user.setAccountName("user1");
-        user.setAccountPassword("1234");
-        System.out.println("保存操作之前："+user);
+        MenuNutrition menu = new MenuNutrition();
+        menu.setFoodName("aaa");
+        menu.setFoodType("t");
+        menu.setCalorie(1.0);
+        menu.setProtein(1.0);
+        menu.setCarbohydrate(1.0);
+        menu.setFat(1.0);
         //5.执行保存方法
-        userDao.createUser(user);
+        menuDao.createMenu(menu);
 
-        System.out.println("保存操作之后："+user);
     }
 
     @Test
     public void  testSelect(){
-        List<UserAccount> users = userDao.findAll();
-        for(UserAccount user :users)
+        List<MenuNutrition> menus = menuDao.getMenu();
+        for(MenuNutrition menu :menus)
         {
-            System.out.println(user);
+            System.out.println(menu);
         }
     }
 

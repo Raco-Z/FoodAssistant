@@ -2,9 +2,11 @@ package com.foodAssistant.dao;
 
 import com.foodAssistant.domain.account.UserAccount;
 import com.foodAssistant.domain.record.Record;
+import org.springframework.stereotype.Repository;
 
 import java.util.List;
 
+@Repository("userDao")
 public interface IUserDao {
     /**
      * 通过用户名查询
@@ -12,6 +14,13 @@ public interface IUserDao {
      * @return
      */
     UserAccount findUserByName(String username);
+
+    /**
+     * 通过用户ID查询
+     * @param userId
+     * @return
+     */
+    UserAccount getUserById(Integer userId);
 
     /**
      * 查询全部用户
@@ -26,20 +35,9 @@ public interface IUserDao {
     void createUser(UserAccount user);
 
     /**
-     * 记录饮食
-     * @return
+     * 更新用户
+     * @param user
      */
-    void record(Record record);
+    void updateUser(UserAccount user);
 
-    /**
-     * 查询所有饮食记录
-     * @return
-     */
-    List<Record> findAllRecord(String userName);
-
-    /**
-     * 生成推荐营养
-     * @return
-     */
-    void recommendNutrition();
 }
