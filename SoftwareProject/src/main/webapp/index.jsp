@@ -9,9 +9,36 @@
 <html>
 <head>
     <title>LOGIN SURFACE</title>
+    <script src="js/jquery.min.js"></script>
+    <script>
+        $(function ()
+        {
+            $("#btn").click(function ()
+            {
+                //alert("HELLO BTN");
+                $.ajax({
+                    //编写json格式，设置属性和值
+                    url:"param/testAjax2",
+                    contentType:"application/json;charset=UTF-8",
+                    data:'{"username":"zzc", "age":20, "password":"123"}',
+                    dataType:"json",
+                    type:"post",
+                    success:function (data)
+                    {
+                        //解析服务器返回的数据data
+                        alert(data);
+                        alert(data.username);
+                        alert(data.age);
+                        alert(data.password);
+                    }
+                })
+            });
+        })
+    </script>
 </head>
 <body>
     <h3>LOGIN</h3>
+    <button id="btn">TEST</button>
     <form action="login/userLogin" method="post" target="_self">
         <fieldset>
             <legend>User Login</legend>

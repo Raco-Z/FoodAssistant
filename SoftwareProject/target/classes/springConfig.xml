@@ -19,7 +19,7 @@
 
     <!--扫描注解-->
     <context:component-scan base-package="com.foodAssistant">
-        <context:exclude-filter type="annotation" expression="org.springframework.stereotype.Controller"/>
+<!--        <context:exclude-filter type="annotation" expression="org.springframework.stereotype.Controller"/>-->
     </context:component-scan>
 
     <!--业务层和持久层-->

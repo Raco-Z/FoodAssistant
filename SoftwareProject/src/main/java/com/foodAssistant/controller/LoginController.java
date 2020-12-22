@@ -11,6 +11,7 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.servlet.ModelAndView;
 
 
+import javax.annotation.Resource;
 import javax.servlet.http.HttpServletResponse;
 import java.io.IOException;
 import java.io.PrintWriter;
@@ -19,7 +20,7 @@ import java.io.PrintWriter;
 @RequestMapping("/login")
 public class LoginController {
 
-    @Autowired
+    @Resource(name = "userAccountService")
     private IUserAccountService infuser;
 
     //利用username在数据库查找，如果存在则检查密码
@@ -113,7 +114,6 @@ public class LoginController {
         user.setAccountPassword(password);
         infuser.createUser(user);
         //Mybatis中插入后给user的id自动赋值，通过检查id是否为空判断数据库操作是否成功
-        user.setAccountId(2);
         if(user.getAccountId()==null)
         {
             out.println("<script>alert('抱歉，注册出现错误，请重新注册');history.go(-1);</script>");
