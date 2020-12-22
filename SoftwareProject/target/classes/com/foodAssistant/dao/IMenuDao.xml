@@ -1,0 +1,40 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.foodAssistant.dao.IMenuDao">
+    <!-- 查询所有食物列表-->
+    <select id="getMenu" resultType="com.foodAssistant.domain.menu.MenuNutrition">
+        select * from menunutrition;
+    </select>
+
+    <!--通过食物Id查询-->
+    <select id="getMenuById" parameterType="INT" resultType="com.foodAssistant.domain.menu.Menu">
+        select * from menu where foodId = #{fid};
+    </select>
+
+    <!--根据食物名称查询-->
+    <select id="getMenuByName" parameterType="string" resultType="com.foodAssistant.domain.menu.Menu">
+        select * from menu where foodName like %${foodName}%;
+    </select>
+
+    <!--根据食物类型查询-->
+    <select id="getMenuByType" parameterType="string" resultType="com.foodAssistant.domain.menu.Menu">
+        select * from menu where foodType = #{ftype};
+    </select>
+
+    <!-- 创建新的食物列表项-->
+    <insert id="creatMenu" parameterType="com.foodAssistant.domain.menu.MenuNutrition">
+        insert into menunutrition(foodName,foodType,protein,calorie,fat)values(#{foodName},#{foodType},#{protein},#{calorie},#{fat});
+    </insert>
+
+    <!--删除已有的食物列表项-->
+    <delete id="deleteMenu" parameterType="INT">
+        delete from menu where foodId=#{fid}
+    </delete>
+
+    <!--更新已有的食物列表项-->
+    <update id="updateMenu" parameterType="com.foodAssistant.domain.menu.Menu">
+        update menu set foodName=#{foodName},foodType=#{foodType} where foodId=#{foodId};
+    </update>
+</mapper>

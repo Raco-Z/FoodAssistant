@@ -1,0 +1,35 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.foodAssistant.dao.IUserDao">
+    <!--根据用户名查询 -->
+    <select id="findUserByName" parameterType="STRING" resultType="com.foodAssistant.domain.account.UserAccount">
+        select * from useraccount where userName=#{uname};
+    </select>
+
+    <!--查询全部用户 -->
+    <select id="findAll" resultType="com.foodAssistant.domain.account.UserAccount">
+        select * from useraccount
+    </select>
+
+    <!-- 创建新的用户-->
+    <insert id="createUser" parameterType="com.foodAssistant.domain.account.UserAccount">
+        <!--配置保存时获得插入的id-->
+        <selectKey resultType="INT" keyProperty="accountId" keyColumn="accountId" order="AFTER">
+            select last_insert_id();
+        </selectKey>
+        insert into useraccount(accountName,accountPassword) values (#{accountName},#{accountPassword})
+    </insert>
+
+    <!-- 记录饮食-->
+    <insert id="record" parameterType="com.foodAssistant.domain.record.Record">
+        insert into record(foodName,foodWeight)values (#{foodName},#{foodWeight});
+    </insert>
+
+    <!-- 查询所有饮食记录-->
+    <select id="findAllRecord" parameterType="STRING" resultType="com.foodAssistant.domain.record.Record">
+        select * from record where username=#{uname};
+    </select>
+
+</mapper>
