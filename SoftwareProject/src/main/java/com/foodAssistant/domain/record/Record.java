@@ -15,6 +15,7 @@ public class Record {
 
     private Integer foodWeight;
 
+
     public Integer getRecordId() {
         return recordId;
     }

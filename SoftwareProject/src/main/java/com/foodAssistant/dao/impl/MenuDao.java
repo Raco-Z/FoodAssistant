@@ -98,10 +98,12 @@ public class MenuDao implements IMenuDao {
         }
     }
 
+
     public void updateMenu(MenuNutrition menuNutrition) {
         try{
             queryRunner.update(connectionUtils.getConnection(),"update Menu set foodname=?,foodtype=? where id=? ",
                     menuNutrition.getFoodName(),menuNutrition.getFoodType(),menuNutrition.getFoodId());
+
         }catch (Exception e){
             throw new RuntimeException(e);
         }

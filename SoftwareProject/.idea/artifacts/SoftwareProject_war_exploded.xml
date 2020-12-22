@@ -15,7 +15,10 @@
         </element>
         <element id="directory" name="lib">
           <element id="library" level="project" name="Maven: commons-dbutils:commons-dbutils:1.6" />
+<<<<<<< HEAD
           <element id="library" level="project" name="Maven: org.mybatis:mybatis:3.4.5" />
+=======
+>>>>>>> 16bc2065d2b4f676a2460fc18791d8462ec798b1
           <element id="library" level="project" name="Maven: mysql:mysql-connector-java:8.0.21" />
           <element id="library" level="project" name="Maven: com.google.protobuf:protobuf-java:3.11.4" />
           <element id="library" level="project" name="Maven: com.mchange:c3p0:0.9.5.2" />
@@ -34,6 +37,7 @@
           <element id="library" level="project" name="Maven: com.fasterxml.jackson.core:jackson-databind:2.9.0" />
           <element id="library" level="project" name="Maven: com.fasterxml.jackson.core:jackson-core:2.9.0" />
           <element id="library" level="project" name="Maven: com.fasterxml.jackson.core:jackson-annotations:2.9.0" />
+<<<<<<< HEAD
           <element id="library" level="project" name="Maven: commons-io:commons-io:2.5" />
           <element id="library" level="project" name="Maven: commons-fileupload:commons-fileupload:1.4" />
           <element id="library" level="project" name="Maven: com.sun.jersey:jersey-core:1.18.1" />
@@ -56,12 +60,18 @@
           <element id="library" level="project" name="Maven: org.springframework.plugin:spring-plugin-metadata:1.2.0.RELEASE" />
           <element id="library" level="project" name="Maven: org.springframework.hateoas:spring-hateoas:0.18.0.RELEASE" />
           <element id="library" level="project" name="Maven: io.springfox:springfox-swagger-ui:2.2.2" />
+=======
+>>>>>>> 16bc2065d2b4f676a2460fc18791d8462ec798b1
         </element>
       </element>
       <element id="directory" name="META-INF">
         <element id="file-copy" path="$PROJECT_DIR$/target/SoftwareProject-1.0-SNAPSHOT/META-INF/MANIFEST.MF" />
       </element>
+<<<<<<< HEAD
       <element id="javaee-facet-resources" facet="SoftwareProject/web/Web" />
+=======
+      <element id="javaee-facet-resources" facet="SoftwareProject/web/webapp" />
+>>>>>>> 16bc2065d2b4f676a2460fc18791d8462ec798b1
     </root>
   </artifact>
 </component>

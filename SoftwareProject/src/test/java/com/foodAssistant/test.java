@@ -40,6 +40,19 @@ public class test {
         menu.setFat(1);
 
         as.createMenu(menu);
+<<<<<<< HEAD
+=======
+    }
+
+    @Test
+    public void updateTest() {
+        Menu menu = new Menu();
+        menu.setFoodId(8);
+        menu.setFoodName("food6");
+        menu.setFoodType("A");
+
+        as.updateMenu(menu);
+>>>>>>> 16bc2065d2b4f676a2460fc18791d8462ec798b1
     }
 
 
