@@ -1,23 +1,14 @@
 package com.foodAssistant.controller;
 
-
-import com.foodAssistant.domain.account.AdminAccount;
-import com.foodAssistant.domain.account.UserAccount;
-import com.foodAssistant.domain.menu.Menu;
 import com.foodAssistant.domain.menu.MenuNutrition;
 import com.foodAssistant.service.IUserAccountService;
-import com.foodAssistant.service.impl.UserAccountServiceImpl;
-import javafx.application.Application;
-import javafx.scene.input.Mnemonic;
-import org.springframework.context.ApplicationContext;
-import org.springframework.context.support.ClassPathXmlApplicationContext;
 import org.springframework.stereotype.Controller;
-import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
 
 import javax.annotation.Resource;
-import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 @Controller
 @RequestMapping("/login/user")
@@ -42,22 +33,23 @@ public class UserController {
 
     /*列出食物营养表*/
     @RequestMapping(value = "/listMenu", method = RequestMethod.POST)
-    public @ResponseBody List<MenuNutrition> listMenu(@RequestBody Menu mn)
+    public @ResponseBody String listMenu(@RequestBody String foodName)
     {
         //验证方法执行
         System.out.println("listMenu done");
-        System.out.println(mn);
-        //判断输入是否为空，如果为空则返回整张表
-        if (mn.getFoodName().isEmpty())
+        System.out.println(foodName);
+        //在数据库中查询值，并返回对应的食物的营养项
+        MenuNutrition foodNutrition = iUserAccountService.getMenuByName(foodName);
+        if (foodNutrition==null)
         {
-            List<MenuNutrition> menu = iUserAccountService.getMenu();
-            return menu;
+            return "";
         }
-        //如果不为空，则返回对应的食物的营养项
-        MenuNutrition foodNutrition = iUserAccountService.getMenuByName(mn.getFoodName());
-        List<MenuNutrition> menu = new ArrayList<>();
-        menu.add(foodNutrition);
-        return menu;
+        HashMap<String, MenuNutrition> map = new HashMap<>();
+        map.put(foodNutrition.getFoodName(), foodNutrition);
+        String rtn = map.toString();
+        //List<MenuNutrition> menu = new ArrayList<>();
+        //menu.add(foodNutrition);
+        return rtn;
     }
 
     /*记录输入的饮食数据*/

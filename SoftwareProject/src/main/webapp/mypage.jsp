@@ -18,24 +18,35 @@
             $("#listMenu").click(function ()
             {
 
-                var foodName = $("#findFood").val();
+                var fName = $("#findFood").val();
 
                 //发送ajax请求
                 $.ajax({
                     url:"user/listMenu",
-                    type:"post",
                     contentType:"application/json;charset=UTF-8",
-                    data:JSON.stringify({"foodName":"asd", "foodId":2, "foodType":"food"}),
-                    dataType:"json",
+                    data:fName,
+                    type:"post",
                     success:function (data)
                     {
-                        //var place = document.getElementById("d1");
-                        //var table = document.createElement("table");
-                        //place.innerText = data;
+                        var place = document.getElementById("d1");
+                        var table = document.createElement("table");
+                        if (data=="")
+                        {
+                            place.innerText = "没有找到这种事物"
+                        }
+                        else
+                        {
+
+                        }
+                        place.innerText = data;
                         alert("done");
                         alert(data.type);
                         alert(data);
                     },
+                    error:function (data)
+                    {
+                        alert("查询出错了，请重新查询")
+                    }
 
                 })
             })
@@ -57,14 +68,12 @@
     <div style="border:2px solid">
         <h3>Your Health about Diet</h3>
         <%--查询食物营养表，如果输入为空，则输出整张营养表--%>
-         <%--<form id="food-name-form" action="user/listMenu" method="post">
+        <form  action="user/listMenu" method="post">
             Search for the Nutrition of Food
             <input type="text" id="findFood" name="foodName"><br>
-            <input type="submit" id="listMenu" name="listMenu" value="Search">
-        </form>--%>
-        <button id="btn">Test</button>
-        <button id="listMenu">Search</button>
+        </form>
         <div id="d1"></div>
+        <button id="listMenu">Search</button>
         <%--输入每餐的食物名称--%>
         <form action="user/saveRecord" method="post">
             Enter your diet data for today
