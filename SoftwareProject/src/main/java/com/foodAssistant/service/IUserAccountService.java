@@ -4,16 +4,17 @@ import com.foodAssistant.domain.record.Record;
 
 import java.util.List;
 
+/**
+ * 用户业务层接口
+ */
 public interface IUserAccountService extends IAccountService{
     /**
      * 查询所有饮食记录
-     * @return
      */
     List<Record> getRecord();
 
     /**
      * 查询一条饮食记录
-     * @return
      */
     Record getRecordById(Integer recordId);
 

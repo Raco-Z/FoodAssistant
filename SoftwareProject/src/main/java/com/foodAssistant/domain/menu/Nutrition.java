@@ -4,6 +4,15 @@ public class Nutrition {
     private Integer protein;
     private Integer calorie;
     private Integer fat;
+    private Integer carbohydrate;
+
+    public Integer getCarbohydrate() {
+        return carbohydrate;
+    }
+
+    public void setCarbohydrate(Integer carbohydrate) {
+        this.carbohydrate = carbohydrate;
+    }
 
     public Integer getProtein() {
         return protein;
@@ -35,6 +44,7 @@ public class Nutrition {
                 "protein=" + protein +
                 ", calorie=" + calorie +
                 ", fat=" + fat +
+                ", carbohydrate=" + carbohydrate +
                 '}';
     }
 }

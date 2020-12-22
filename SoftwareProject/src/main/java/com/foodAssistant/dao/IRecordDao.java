@@ -19,15 +19,15 @@ public interface IRecordDao {
     /**
      * 新建饮食记录
      */
-    void createRecord();
+    void createRecord(Record record);
 
     /**
      * 删除饮食记录
      */
-    void deleteRecord();
+    void deleteRecord(Integer recordId);
 
     /**
      * 更新饮食记录
      */
-    void updateRecord();
+    void updateRecord(Record record);
 }

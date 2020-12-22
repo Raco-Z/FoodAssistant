@@ -1,31 +1,46 @@
 package com.foodAssistant;
 
-import com.foodAssistant.proxy.AccountServiceProxy;
+import com.foodAssistant.domain.menu.Menu;
+import com.foodAssistant.domain.menu.MenuNutrition;
 import com.foodAssistant.service.IAdminAccountService;
-import com.foodAssistant.utils.ConnectionUtils;
-import com.foodAssistant.utils.JdbcResourceUtils;
-import com.foodAssistant.utils.TransactionManagerUtils;
-import com.mchange.v2.c3p0.ComboPooledDataSource;
-import com.sun.xml.internal.fastinfoset.sax.Properties;
 import org.junit.Test;
+import org.junit.runner.RunWith;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.context.ApplicationContext;
+import org.springframework.context.support.ClassPathXmlApplicationContext;
+import org.springframework.test.context.ContextConfiguration;
+import org.springframework.test.context.junit4.SpringJUnit4ClassRunner;
+import org.springframework.test.context.web.WebAppConfiguration;
 
+import java.util.List;
+
+
+@RunWith(SpringJUnit4ClassRunner.class)
+@ContextConfiguration(locations = {"classpath:springConfig.xml"})
 public class test {
-    @Test
-    public void proxyTest() {
 
-        ComboPooledDataSource dataSource = new ComboPooledDataSource();
-        try{
-            dataSource.setDriverClass(JdbcResourceUtils.getConfig("jdbc.driver").toString());
-            dataSource.setJdbcUrl(JdbcResourceUtils.getConfig("jdbc.url").toString());
-            dataSource.setUser(JdbcResourceUtils.getConfig("jdbc.username").toString());
-            dataSource.setPassword(JdbcResourceUtils.getConfig("jdbc.password").toString());
-        }catch (Exception e){
-            throw new RuntimeException(e);
-        }
-        ConnectionUtils connectionUtils = new ConnectionUtils(dataSource);
-        TransactionManagerUtils txManager = new TransactionManagerUtils(connectionUtils);
-        AccountServiceProxy accountServiceProxy = new AccountServiceProxy(txManager);
-        IAdminAccountService accountService = accountServiceProxy.getAccountService(IAdminAccountService.class);
-        accountService.getMenu();
+    @Autowired
+    private IAdminAccountService as;
+
+    @Test
+    public void proxyTest()   {
+
+        List<MenuNutrition> menus = as.getMenu();
+        System.out.println(menus);
+
     }
+
+    @Test
+    public void createTest() {
+        MenuNutrition menu = new MenuNutrition();
+        menu.setFoodName("food5");
+        menu.setFoodType("C");
+        menu.setProtein(1);
+        menu.setCalorie(1);
+        menu.setFat(1);
+
+        as.createMenu(menu);
+    }
+
+
 }

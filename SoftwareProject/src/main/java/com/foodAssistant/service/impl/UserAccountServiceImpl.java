@@ -3,11 +3,15 @@ package com.foodAssistant.service.impl;
 import com.foodAssistant.dao.IMenuDao;
 import com.foodAssistant.dao.IRecordDao;
 import com.foodAssistant.domain.menu.Menu;
+import com.foodAssistant.domain.menu.MenuNutrition;
 import com.foodAssistant.domain.record.Record;
 import com.foodAssistant.service.IUserAccountService;
 
 import java.util.List;
 
+/**
+ * 用户业务层实现类
+ */
 public class UserAccountServiceImpl implements IUserAccountService {
     private IMenuDao menuDao;
     private IRecordDao recordDao;
@@ -20,7 +24,7 @@ public class UserAccountServiceImpl implements IUserAccountService {
         this.recordDao = recordDao;
     }
 
-    public List<Menu> getMenu(){
+    public List<MenuNutrition> getMenu(){
         return menuDao.getMenu();
     }
 
@@ -44,15 +48,27 @@ public class UserAccountServiceImpl implements IUserAccountService {
         return recordDao.getRecordById(recordId);
     }
 
+    public void createRecord(Record record) {
+        recordDao.createRecord(record);
+    }
+
     public void createRecord() {
-        recordDao.createRecord();
+
     }
 
     public void deleteRecord() {
-        recordDao.deleteRecord();
+
     }
 
     public void updateRecord() {
-        recordDao.updateRecord();
+
+    }
+
+    public void deleteRecord(Integer recordId) {
+        recordDao.deleteRecord(recordId);
+    }
+
+    public void updateRecord(Record record) {
+        recordDao.updateRecord(record);
     }
 }

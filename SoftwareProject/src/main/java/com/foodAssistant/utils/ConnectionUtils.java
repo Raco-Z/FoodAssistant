@@ -14,7 +14,8 @@ public class ConnectionUtils {
     //加入连接的数据源信息
     private DataSource dataSource;
 
-    public ConnectionUtils(DataSource dataSource){
+
+    public void setDataSource(DataSource dataSource) {
         this.dataSource = dataSource;
     }
 

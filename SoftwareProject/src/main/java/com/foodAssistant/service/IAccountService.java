@@ -1,6 +1,7 @@
 package com.foodAssistant.service;
 
 import com.foodAssistant.domain.menu.Menu;
+import com.foodAssistant.domain.menu.MenuNutrition;
 
 import java.util.List;
 
@@ -8,7 +9,7 @@ public interface IAccountService {
     /**
      * 查询所有食物列表
      */
-    List<Menu> getMenu();
+    List<MenuNutrition> getMenu();
 
     /**
      * 查询对应名称的食物
