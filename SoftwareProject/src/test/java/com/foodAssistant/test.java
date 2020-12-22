@@ -32,6 +32,7 @@ public class test {
 
     @Test
     public void createTest() {
+        /*
         MenuNutrition menu = new MenuNutrition();
         menu.setFoodName("food5");
         menu.setFoodType("C");
@@ -40,15 +41,23 @@ public class test {
         menu.setFat(1);
 
         as.createMenu(menu);
+        */
+
+
     }
 
     @Test
     public void updateTest() {
+        /*
         Menu menu = new Menu();
         menu.setFoodId(8);
         menu.setFoodName("food6");
         menu.setFoodType("A");
 
         as.updateMenu(menu);
+        */
+
     }
+
+
 }

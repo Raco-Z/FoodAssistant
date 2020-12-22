@@ -3,12 +3,14 @@ package com.foodAssistant.dao;
 import com.foodAssistant.domain.menu.Menu;
 import com.foodAssistant.domain.menu.MenuNutrition;
 import com.mysql.cj.exceptions.MysqlErrorNumbers;
+import org.springframework.stereotype.Repository;
 
 import java.util.List;
 
 /**
  * 处理和食物列表有关的操作
  */
+@Repository("menuDao")
 public interface IMenuDao {
     /**
      * 查询全部食物列表
@@ -35,7 +37,7 @@ public interface IMenuDao {
      * @param foodType
      * @return
      */
-    List<Menu> getMenuByType(String foodType);
+    List<MenuNutrition> getMenuByType(String foodType);
 
     /**
      * 创建新的食物列表项
@@ -50,5 +52,6 @@ public interface IMenuDao {
     /**
      * 更新已有的食物列表项
      */
-    void updateMenu(Menu menu);
+    void updateMenu(MenuNutrition menuNutrition);
+
 }

@@ -7,7 +7,6 @@ public class Menu implements Serializable{
     private String foodName;
     private String foodType;
 
-
     public Integer getFoodId() {
         return foodId;
     }

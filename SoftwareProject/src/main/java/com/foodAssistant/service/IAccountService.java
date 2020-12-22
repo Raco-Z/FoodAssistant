@@ -30,5 +30,5 @@ public interface IAccountService {
      * @param foodType
      * @return
      */
-    List<Menu> getMenuByType(String foodType);
+    List<MenuNutrition> getMenuByType(String foodType);
 }

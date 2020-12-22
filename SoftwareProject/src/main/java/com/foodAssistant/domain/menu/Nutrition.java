@@ -1,32 +1,41 @@
 package com.foodAssistant.domain.menu;
 
 public class Nutrition {
-    private Integer protein;
-    private Integer calorie;
-    private Integer fat;
+    private Double protein;
+    private Double calorie;
+    private Double fat;
+    private Double carbohydrate;
 
-    public Integer getProtein() {
+    public Double getProtein() {
         return protein;
     }
 
-    public void setProtein(Integer protein) {
+    public void setProtein(Double protein) {
         this.protein = protein;
     }
 
-    public Integer getCalorie() {
+    public Double getCalorie() {
         return calorie;
     }
 
-    public void setCalorie(Integer calorie) {
+    public void setCalorie(Double calorie) {
         this.calorie = calorie;
     }
 
-    public Integer getFat() {
+    public Double getFat() {
         return fat;
     }
 
-    public void setFat(Integer fat) {
+    public void setFat(Double fat) {
         this.fat = fat;
+    }
+
+    public Double getCarbohydrate() {
+        return carbohydrate;
+    }
+
+    public void setCarbohydrate(Double carbohydrate) {
+        this.carbohydrate = carbohydrate;
     }
 
     @Override
@@ -35,6 +44,7 @@ public class Nutrition {
                 "protein=" + protein +
                 ", calorie=" + calorie +
                 ", fat=" + fat +
+                ", carbohydrate=" + carbohydrate +
                 '}';
     }
 }

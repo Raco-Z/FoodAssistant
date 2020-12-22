@@ -22,6 +22,7 @@ public interface IAdminAccountService extends IAccountService{
     /**
      * 修改食物列表
      */
-    void updateMenu(Menu menu);
+    void updateMenu(MenuNutrition menuNutrition);
+
 
 }

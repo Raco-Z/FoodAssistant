@@ -1,8 +1,11 @@
 package com.foodAssistant.controller;
 
 
+
+import com.foodAssistant.dao.IMenuDao;
 import com.foodAssistant.domain.menu.Menu;
 import com.foodAssistant.domain.menu.MenuNutrition;
+import com.foodAssistant.factory.BeanFactory;
 import com.foodAssistant.service.IAdminAccountService;
 import org.springframework.context.ApplicationContext;
 import org.springframework.context.support.ClassPathXmlApplicationContext;
@@ -41,10 +44,10 @@ public class MenuController {
     }
 
     @RequestMapping(value = "/getMenuByType",method = RequestMethod.GET)
-    public List<Menu> getMenuByType(String foodType){
+    public List<MenuNutrition> getMenuByType(String foodType){
         ApplicationContext ac = new ClassPathXmlApplicationContext("springConfig.xml");
         IAdminAccountService adminAccountService = ac.getBean("adminAccountService",IAdminAccountService.class);
-        List<Menu> menus = adminAccountService.getMenuByType(foodType);
+        List<MenuNutrition> menus = adminAccountService.getMenuByType(foodType);
         return menus;
     }
 
@@ -55,6 +58,7 @@ public class MenuController {
         adminAccountService.createMenu(menuNutrition);
 
     }
+
 
     @RequestMapping(value = "/deleteMenu",method = RequestMethod.DELETE)
     public void deleteMenu(Integer menuId){

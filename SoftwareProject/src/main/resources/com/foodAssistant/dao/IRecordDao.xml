@@ -1,0 +1,43 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.foodAssistant.dao.IRecordDao">
+    <resultMap id="recordMap" type="Record">
+        <id property="recordId" column="id"></id>
+        <result property="foodName" column="foodname"></result>
+        <result property="userName" column="username"></result>
+        <result property="foodWeight" column="foodweight"></result>
+    </resultMap>
+
+    <!--查询所有记录-->
+    <select id="getRecord" resultMap="recordMap">
+        select * from record;
+    </select>
+
+    <!--通过ID查询饮食记录-->
+    <select id="getRecordById" parameterType="INT" resultMap="recordMap">
+        select * from record where id = #{rid};
+    </select>
+
+    <!--通过所属用户查询饮食记录-->
+    <select id="getRecordByUser" parameterType="STRING" resultMap="recordMap">
+        select * from record where username = #{userName};
+    </select>
+
+    <!--新建饮食记录-->
+    <insert id="createRecord" parameterType="Record">
+        insert into record(foodname,username,foodweight)
+        values (#{foodName},#{userName},#{foodWeight});
+    </insert>
+
+    <!--删除饮食记录-->
+    <delete id="deleteRecord" parameterType="INT">
+        delete from record where id = #{rid};
+    </delete>
+
+    <!--更新饮食记录-->
+    <update id="updateRecord" parameterType="Record">
+        update record set foodname=#{foodName},username=#{userName},foodweight=#{foodWeight} where id=#{recordId};
+    </update>
+</mapper>

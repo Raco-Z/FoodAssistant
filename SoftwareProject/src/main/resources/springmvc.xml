@@ -29,7 +29,7 @@
     <bean class="org.springframework.web.servlet.mvc.method.annotation.RequestMappingHandlerAdapter" />
 
 
-    <mvc:resources mapping="/js/**" location="/js/"/>
+    <mvc:resources mapping="/js/**" location="/js/"></mvc:resources>
 
     <mvc:annotation-driven/>
 </beans>
