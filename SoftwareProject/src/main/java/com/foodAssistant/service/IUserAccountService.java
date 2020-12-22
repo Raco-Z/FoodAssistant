@@ -10,7 +10,6 @@ import java.util.List;
 /**
  * 用户业务层接口
  */
-/*@Service("userAccountService")*/
 public interface IUserAccountService extends IAccountService{
     /**
      * 查询所有饮食记录

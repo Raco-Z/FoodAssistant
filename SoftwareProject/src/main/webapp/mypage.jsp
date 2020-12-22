@@ -12,6 +12,7 @@
     <script src="../js/jquery.min.js"></script>
     <script type="text/javascript" src="https://cdn.bootcss.com/echarts/4.2.1-rc1/echarts.min.js"></script>
     <script>
+
         $(function ()
         {
             $("#listMenu").click(function ()
@@ -21,13 +22,13 @@
 
                 //发送ajax请求
                 $.ajax({
-                    url:"user/listMenu?foodName=" + foodName,
+                    url:"user/listMenu",
                     type:"post",
                     contentType:"application/json;charset=UTF-8",
+                    data:JSON.stringify({"foodName":"asd", "foodId":2, "foodType":"food"}),
                     dataType:"json",
                     success:function (data)
                     {
-                        con
                         //var place = document.getElementById("d1");
                         //var table = document.createElement("table");
                         //place.innerText = data;
@@ -56,12 +57,13 @@
     <div style="border:2px solid">
         <h3>Your Health about Diet</h3>
         <%--查询食物营养表，如果输入为空，则输出整张营养表--%>
-         <form id="food-name-form" action="user/listMenu" method="post">
+         <%--<form id="food-name-form" action="user/listMenu" method="post">
             Search for the Nutrition of Food
             <input type="text" id="findFood" name="foodName"><br>
             <input type="submit" id="listMenu" name="listMenu" value="Search">
-        </form>
-<%--        <button id="listMenu">Search</butto--%>
+        </form>--%>
+        <button id="btn">Test</button>
+        <button id="listMenu">Search</button>
         <div id="d1"></div>
         <%--输入每餐的食物名称--%>
         <form action="user/saveRecord" method="post">
@@ -80,9 +82,10 @@
         <h3>RecommendMenu</h3>
         <%--点击按钮显示推荐食谱--%>
         <form action="user/showRecommendMenu" method="get">
-            <%--发送请求，利用返回的数据创建表格--%>
-            <input type="button" name="showRecommendMenu" value="show"><br>
+            <%--发送请求，显示返回的数据--%>
+            <input type="button" name="showRecommendNutrition" value="show"><br>
         </form>
+        <div id="d2"></div>
     </div>
 
     <hr/>

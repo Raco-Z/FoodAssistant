@@ -15,12 +15,18 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
 
+import javax.annotation.Resource;
 import java.util.ArrayList;
 import java.util.List;
 
 @Controller
 @RequestMapping("/login/user")
 public class UserController {
+
+
+
+    @Resource(name = "userAccountService")
+    IUserAccountService iUserAccountService;
 
     /*用户可以修改用户名username，可以保存*/
     /*@RequestMapping(value = "/saveName", method = RequestMethod.POST)
@@ -36,23 +42,19 @@ public class UserController {
 
     /*列出食物营养表*/
     @RequestMapping(value = "/listMenu", method = RequestMethod.POST)
-    public @ResponseBody List<MenuNutrition> listMenu(@RequestParam("foodName") String foodName)
+    public @ResponseBody List<MenuNutrition> listMenu(@RequestBody Menu mn)
     {
         //验证方法执行
         System.out.println("listMenu done");
-        System.out.println(foodName);
-        //调用业务层逻辑
-        ApplicationContext ac  = new ClassPathXmlApplicationContext("springConfig.xml");
-
-        IUserAccountService infUserSev = (IUserAccountService)ac.getBean("userAccountService");
+        System.out.println(mn);
         //判断输入是否为空，如果为空则返回整张表
-        if (foodName.isEmpty())
+        if (mn.getFoodName().isEmpty())
         {
-            List<MenuNutrition> menu = infUserSev.getMenu();
+            List<MenuNutrition> menu = iUserAccountService.getMenu();
             return menu;
         }
         //如果不为空，则返回对应的食物的营养项
-        MenuNutrition foodNutrition = infUserSev.getMenuByName(foodName);
+        MenuNutrition foodNutrition = iUserAccountService.getMenuByName(mn.getFoodName());
         List<MenuNutrition> menu = new ArrayList<>();
         menu.add(foodNutrition);
         return menu;
