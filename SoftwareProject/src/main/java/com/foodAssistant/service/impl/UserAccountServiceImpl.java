@@ -13,6 +13,7 @@ import java.util.List;
  * 用户业务层实现类
  */
 public class UserAccountServiceImpl implements IUserAccountService {
+
     private IMenuDao menuDao;
     private IRecordDao recordDao;
 
@@ -28,11 +29,11 @@ public class UserAccountServiceImpl implements IUserAccountService {
         return menuDao.getMenu();
     }
 
-    public Menu getMenuByName(String foodName) {
+    public MenuNutrition getMenuByName(String foodName) {
         return menuDao.getMenuByName(foodName);
     }
 
-    public Menu getMenuById(Integer foodId) {
+    public MenuNutrition getMenuById(Integer foodId) {
         return menuDao.getMenuById(foodId);
     }
 

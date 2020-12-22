@@ -43,22 +43,30 @@ public class MenuDao implements IMenuDao {
         }
     }
 
-    public Menu getMenuById(Integer foodId) {
+    public MenuNutrition getMenuById(Integer foodId) {
         try{
             return queryRunner.query(connectionUtils.getConnection()
                     ,"select  m.id as foodId,m.foodname,m.foodtype from Menu m where id = ?;"
-                    ,new BeanHandler<Menu>(Menu.class),foodId);
+                    ,new BeanHandler<MenuNutrition>(MenuNutrition.class),foodId);
         }catch (Exception e) {
             throw new RuntimeException(e);
         }
     }
 
-    public Menu getMenuByName(String foodName) {
-        try{
-            return queryRunner.query(connectionUtils.getConnection(),"select  m.id as foodId,m.foodname,m.foodtype from Menu m where foodname = ?;",new BeanHandler<Menu>(Menu.class),foodName);
+    public MenuNutrition getMenuByName(String foodName) {
+        MenuNutrition mn = new MenuNutrition();
+        mn.setFoodId(1);
+        mn.setFoodName(foodName);
+        mn.setFoodType("zbc");
+        mn.setCalorie(10);
+        mn.setFat(20);
+        mn.setProtein(30);
+        return mn;
+        /*try{
+            return queryRunner.query(connectionUtils.getConnection(),"select  m.id as foodId,m.foodname,m.foodtype from Menu m where foodname = ?;",new BeanHandler<MenuNutrition>(MenuNutrition.class),foodName);
         }catch (Exception e) {
             throw new RuntimeException(e);
-        }
+        }*/
     }
 
     public List<Menu> getMenuByType(String foodType) {

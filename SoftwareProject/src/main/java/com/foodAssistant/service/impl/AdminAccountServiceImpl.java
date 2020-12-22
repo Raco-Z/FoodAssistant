@@ -37,12 +37,12 @@ public class AdminAccountServiceImpl implements IAdminAccountService {
     }
 
     //暂未修改
-    public Menu getMenuByName(String foodName) {
+    public MenuNutrition getMenuByName(String foodName) {
         return menuDao.getMenuByName(foodName);
     }
 
     //暂未修改
-    public Menu getMenuById(Integer foodId) {
+    public MenuNutrition getMenuById(Integer foodId) {
         return menuDao.getMenuById(foodId);
     }
 

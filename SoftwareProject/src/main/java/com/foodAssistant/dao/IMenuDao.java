@@ -21,14 +21,14 @@ public interface IMenuDao {
      * @param foodId
      * @return
      */
-    Menu getMenuById(Integer foodId);
+    MenuNutrition getMenuById(Integer foodId);
 
     /**
      * 通过食物名称查询
      * @param foodName
      * @return
      */
-    Menu getMenuByName(String foodName);
+    MenuNutrition getMenuByName(String foodName);
 
     /**
      * 通过食物类型查询

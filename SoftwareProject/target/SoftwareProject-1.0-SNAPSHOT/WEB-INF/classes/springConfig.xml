@@ -50,6 +50,7 @@
         <property name="user" value="${jdbc.username}"></property>
         <property name="password" value="${jdbc.password}"></property>
     </bean>
+
     
     <aop:config>
         <aop:pointcut id="pt1" expression="execution(* com.foodAssistant.service.*.*(..))"/>

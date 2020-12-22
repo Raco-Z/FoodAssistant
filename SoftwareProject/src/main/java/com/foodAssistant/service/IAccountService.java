@@ -16,14 +16,14 @@ public interface IAccountService {
      * @param foodName
      * @return
      */
-    Menu getMenuByName(String foodName);
+    MenuNutrition getMenuByName(String foodName);
 
     /**
      * 查询对应ID的食物
      * @param foodId
      * @return
      */
-    Menu getMenuById(Integer foodId);
+    MenuNutrition getMenuById(Integer foodId);
 
     /**
      * 查询对应种类的食物
