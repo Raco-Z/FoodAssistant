@@ -82,7 +82,7 @@ public class UserAccountServiceImpl implements IUserAccountService {
     }
 
     //生成推荐
-    public void recommendNutrition(String userName) {
+    public Nutrition recommendNutrition(String userName) {
         //返回需要摄入的营养
         UserAccount user = userDao.findUserByName(userName);
         Nutrition n = new Nutrition();
@@ -95,5 +95,22 @@ public class UserAccountServiceImpl implements IUserAccountService {
         n.setFat(recommendFat);
         n.setCarbohydrate(recommendCarbohydrate);
         user.setRecommendedNutrition(n);
+        return n;
+    }
+
+    //获取食物中的总营养
+    @Override
+    public Nutrition calculateNutrition(String foodName, Integer foodWeight) {
+        MenuNutrition menu = menuDao.getMenuByName(foodName);
+        Nutrition n = new Nutrition();
+        Double totalCalorie = menu.getCalorie() * foodWeight;
+        Double totalProtein = menu.getProtein() * foodWeight;
+        Double totalFat = menu.getFat() * foodWeight;
+        Double totalCarbohydrate = menu.getCarbohydrate() * foodWeight;
+        n.setCalorie(totalCalorie);
+        n.setProtein(totalProtein);
+        n.setFat(totalFat);
+        n.setCarbohydrate(totalCarbohydrate);
+        return n;
     }
 }
