@@ -1,11 +1,17 @@
 package com.foodAssistant.domain.record;
 
-public class Record {
+import com.foodAssistant.domain.menu.Nutrition;
+
+public class Record{
     private Integer recordId;
     private String userName;
     private String foodName;
     //食物的重量
     private Integer foodWeight;
+    private Double protein;
+    private Double calorie;
+    private Double fat;
+    private Double carbohydrate;
 
     public String getUserName() {
         return userName;
@@ -40,6 +46,38 @@ public class Record {
         this.foodName = foodName;
     }
 
+    public Double getProtein() {
+        return protein;
+    }
+
+    public void setProtein(Double protein) {
+        this.protein = protein;
+    }
+
+    public Double getCalorie() {
+        return calorie;
+    }
+
+    public void setCalorie(Double calorie) {
+        this.calorie = calorie;
+    }
+
+    public Double getFat() {
+        return fat;
+    }
+
+    public void setFat(Double fat) {
+        this.fat = fat;
+    }
+
+    public Double getCarbohydrate() {
+        return carbohydrate;
+    }
+
+    public void setCarbohydrate(Double carbohydrate) {
+        this.carbohydrate = carbohydrate;
+    }
+
     @Override
     public String toString() {
         return "Record{" +
@@ -47,6 +85,10 @@ public class Record {
                 ", userName='" + userName + '\'' +
                 ", foodName='" + foodName + '\'' +
                 ", foodWeight=" + foodWeight +
+                ", protein=" + protein +
+                ", calorie=" + calorie +
+                ", fat=" + fat +
+                ", carbohydrate=" + carbohydrate +
                 '}';
     }
 }

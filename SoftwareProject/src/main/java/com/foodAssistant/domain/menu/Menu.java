@@ -1,8 +1,6 @@
 package com.foodAssistant.domain.menu;
 
-import java.io.Serializable;
-
-public class Menu implements Serializable{
+public class Menu{
     private Integer foodId;
     private String foodName;
     private String foodType;

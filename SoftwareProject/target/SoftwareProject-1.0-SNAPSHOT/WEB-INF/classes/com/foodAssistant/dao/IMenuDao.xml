@@ -25,7 +25,7 @@
     <!--根据食物名称查询-->
     <!--使用时加模糊条件%%-->
     <select id="getMenuByName" parameterType="string" resultMap="menuMap">
-        select * from menu where foodname like #{foodName};
+        select * from menu where foodname = #{foodName};
     </select>
 
     <!--根据食物类型查询-->

@@ -37,6 +37,32 @@
                         else
                         {
                             place.innerText = data;
+                            var strary1 = data.match(/{[^{}]+}/g);
+                            //console.info(strary1);
+                            var strary2 = new Array();
+                            var strary4 = new Array();
+                            for (var str1 in strary1)
+                            {
+                                str1 = strary1[str1];
+                                var str3 = str1.substring(1,str1.length-1);
+                                //console.info(str3);
+                                var strary3 = str3.split(', ');
+                                //console.info(strary3);
+                                strary2 = strary2.concat(strary3);
+                            }
+                            for (var str2 in strary2)
+                            {
+                                str2 = strary2[str2];
+                                var strary3 = str2.split('=');
+                                //console.info(strary3);
+                                strary4.push(strary3);
+                            }
+                            for (var str4 in strary4)
+                            {
+                                str4 = strary4[str4];
+                                str4[1] = str4[1].replace(/'/g,"");
+                                //console.info(str4[0]+'='+str4[1]+'<br/>');
+                            }
                         }
                     },
                     error:function (data)
@@ -75,13 +101,14 @@
         <button id="listMenu">Search</button>
         <%--输入每餐的食物名称--%>
         <form action="user/saveRecord" method="post">
-            Enter your diet data for today
-            <input type="text" name="recordedName"><br>
+            Enter your diet data for today<br>
+            Food Name: <input type="text" id="recordName"><br>
+            Food Weight: <input type="text" id="recordWeight"><br>
             <%--保存输入的饮食数据，并返回所有饮食数据构建图表--%>
-            <input type="button" name="saveRecord" value="Record"><br>
-            <div id="chart" style="width: 800px;height: 400px">
-            </div>
+            <input type="button" id="saveRecord" value="Record" onclick="record()">
         </form>
+        <div id="d3"></div>
+        <div id="chart1" style="width: 800px;height: 400px" hidden></div>
     </div>
 
     <hr/>
@@ -101,27 +128,159 @@
     <div style="border:2px solid">
         <h3>Calculate Nutrition</h3>
         <%--计算摄入的营养--%>
-        <form action="user/calculateNutrition" method="get">
-            Food Name:<input type="text" name="foodName"><br>
-            Food Weight:<input type="text" name="foodWeight"><br>
-            <input type="submit" name="calculate" value="Calculate Nutrition">
+        <form action="user/calculateNutrition" method="post">
+            Food Name:<input type="text" id="calName" name="foodName"><br>
+            Food Weight:<input type="text" id="calWeight" name="foodWeight"><br>
+            <input type="button" name="calculate" value="Calculate Nutrition" onclick="calNutrition()">
         </form>
+        <div id="d4"></div>
+        <div id="chart2" style="width: 600px;height:400px;" hidden></div>
 
     </div>
     <script>
         function saveInfo()
         {
-            var username = ${user.accountName}
+            var username = "${user.accountName}";
             var height = $("#height").val();
-            var wetigh = $("#weight").val();
+            var weight = $("#weight").val();
             $.ajax({
                 url:"user/saveInfo",
-                contentType:"application/json;charset=UTF-8",
-                data:JSON.stringify({"username":username, "height":height, "weight":weight}),
+                //contentType:"application/json;charset=UTF-8",
+                data:{"username":username, "height":height, "weight":weight},
                 type:"post",
                 success:function (data)
                 {
-                    var place = document.getElementById("d1");
+                    alert(data);
+                }
+            })
+        }
+    </script>
+
+    <script>
+        function record()
+        {
+            var username = "${user.accountName}";
+            var foodName = $("#recordName").val();
+            var foodWeight = $("#recordWeight").val();
+            $.ajax({
+                url:"user/saveRecord",
+                //contentType:"application/json;charset=UTF-8",
+                data:{"username":username, "foodName":foodName, "foodWeight":foodWeight},
+                type:"post",
+                success:function (data)
+                {
+                    alert(data);
+                    var place = document.getElementById("d3");
+                    if (data=="")
+                    {
+                        alert("食物名称输入错误");
+                    }
+                    else
+                    {
+                        place.innerText = data;
+                        var cht = document.getElementById("chart1");
+                        cht.removeAttribute("hidden");
+                        //数据处理
+                        var strary1 = data.match(/{[^{}]+}/g);
+                        //console.info(strary1);
+                        var strary2 = new Array();
+                        for (var str1 in strary1)
+                        {
+                            str1 = strary1[str1];
+                            var str2 = str1.substring(1,str1.length-1);
+                            //console.info(str2);
+                            var strary3 = str2.split(', ');
+                            //console.info(strary3);
+                            var strary4 = new Array();
+                            for (var str3 in strary3)
+                            {
+                                str3 = strary3[str3];
+                                var strary5 = str3.split('=');
+                                strary4.push(strary5);
+                            }
+                            strary2.push(strary4);
+                        }
+                        var id_data = new Array();
+                        var weight_data = new Array();
+                        var protein_data = new Array();
+                        var calorie_data = new Array();
+                        var fat_data = new Array();
+                        var carbohydrate_data = new Array();
+                        for (var str2 in strary2)
+                        {
+                            str2 = strary2[str2];
+                            id_data.push(str2[0][1]);
+                            weight_data.push(str2[3][1]);
+                            protein_data.push(str2[4][1]);
+                            calorie_data.push(str2[5][1]);
+                            fat_data.push(str2[6][1]);
+                            carbohydrate_data.push(str2[7][1]);
+                        }
+                        createChart('chart1',id_data,weight_data,protein_data,calorie_data,fat_data,carbohydrate_data);
+                    }
+                }
+            })
+        }
+    </script>
+
+    <script type="text/javascript">
+        function createChart(name,id_data,weight_data,protein_data,calorie_data,fat_data,carbohydrate_data)
+        {
+            var cht = document.getElementById(name);
+            var myChart = echarts.init(cht);
+            var option = {
+                xAxis: {
+                    data: id_data,
+                },
+                yAxis: {},
+                tooltip: {},
+                legend: {
+                    data:['weight','protein','calorie','fat','carbohydrate']},
+                series: [
+                    {
+                    name: 'weight',
+                    type: 'line',
+                    data: weight_data,
+                    },
+                    {
+                        name: 'protein',
+                        type: 'bar',
+                        data: protein_data,
+                    },
+                    {
+                        name: 'calorie',
+                        type: 'bar',
+                        data: calorie_data,
+                    },
+                    {
+                        name: 'fat',
+                        type: 'bar',
+                        data: fat_data,
+                    },
+                    {
+                        name: 'carbohydrate',
+                        type: 'bar',
+                        data: carbohydrate_data,
+                    },
+                ]
+            }
+            // 使用刚指定的配置项和数据显示图表。
+            myChart.setOption(option);
+        }
+    </script>
+
+    <script>
+        function showRecommendMenu()
+        {
+            var username = "${user.accountName}";
+            $.ajax({
+                url:"user/showRecommendMenu",
+                contentType:"application/json;charset=UTF-8",
+                data:username,
+                type:"post",
+                success:function (data)
+                {
+                    var place = document.getElementById("d2");
                     if (data=="")
                     {
                         place.innerText = "没有可推荐的食物"
@@ -135,42 +294,75 @@
         }
     </script>
 
-    <script type="text/javascript">
-        var myChart = echarts.init(document.getElementById('chart'));
-        var option = {
-            xAxis: {
-                data: [],
-            },
-            yAxis: {},
-            series: [{
-                name: '销量',
-                type: 'line',
-                data: [5, 20, 36, 10, 10, 20]
-            }]
-        };
-        // 使用刚指定的配置项和数据显示图表。
-        myChart.setOption(option);
-    </script>
-
     <script>
-        function showRecommendMenu()
+        function calNutrition()
         {
-            var username = ${user.accountName};
+            var foodName = $("#calName").val();
+            var foodWeight = $("#calWeight").val();
             $.ajax({
-                url:"user/showRecommendMenu",
-                contentType:"application/json;charset=UTF-8",
-                data:username,
+                url:"user/calNutrition",
+                //contentType:"application/json;charset=UTF-8",
+                data:{"foodName":foodName, "foodWeight":foodWeight},
                 type:"post",
                 success:function (data)
                 {
-                    var place = document.getElementById("d1");
+                    var place = document.getElementById("d4");
                     if (data=="")
                     {
-                        place.innerText = "没有可推荐的食物"
+                        place.innerText = "食物名称输入错误"
                     }
                     else
                     {
-                        place.innerText = data;
+                        //初始化图表
+                        var cht = document.getElementById("chart2");
+                        cht.removeAttribute("hidden");
+                        var chart = echarts.init(cht);
+                        //数据处理
+                        var strary1 = data.match(/{[^{}]+}/g);
+                        //console.info(strary1);
+                        var strary2 = new Array();
+                        var strary4 = new Array();
+                        for (var str1 in strary1)
+                        {
+                            str1 = strary1[str1];
+                            var str3 = str1.substring(1,str1.length-1);
+                            //console.info(str3);
+                            var strary3 = str3.split(', ');
+                            //console.info(strary3);
+                            strary2 = strary2.concat(strary3);
+                        }
+                        for (var str2 in strary2)
+                        {
+                            str2 = strary2[str2];
+                            var strary3 = str2.split('=');
+                            //console.info(strary3);
+                            strary4.push(strary3);
+                        }
+                        var data_ary = new Array();
+                        for (var str4 in strary4)
+                        {
+                            str4 = strary4[str4];
+                            str4[1] = str4[1].replace(/'/g,"");
+                            //格式化数据为键值对
+                            var obj = {value:str4[1], name:str4[0]};
+                            data_ary.push(obj);
+                            //console.info(str4[0]+'='+str4[1]+'<br/>');
+                        }
+                        //构建饼图数据
+                        var option = {
+                            tooltip: {},
+                            series : [
+                                {
+                                    name: 'Nutrition',
+                                    type: 'pie',
+                                    radius: '55%',
+                                    roseType: 'angle',
+                                    data:data_ary
+                                }
+                            ]
+                        };
+                        //显示饼图
+                        chart.setOption(option);
                     }
                 }
             })

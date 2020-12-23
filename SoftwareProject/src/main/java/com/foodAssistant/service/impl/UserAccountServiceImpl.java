@@ -81,6 +81,11 @@ public class UserAccountServiceImpl implements IUserAccountService {
         userDao.createUser(user);
     }
 
+    public void updateUser(UserAccount user)
+    {
+        userDao.updateUser(user);
+    }
+
     //生成推荐
     public Nutrition recommendNutrition(String userName) {
         //返回需要摄入的营养

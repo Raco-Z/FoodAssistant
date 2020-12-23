@@ -44,6 +44,8 @@ public interface IUserAccountService extends IAccountService{
 
     void createUser(UserAccount user);
 
+    void updateUser(UserAccount user);
+
     Nutrition recommendNutrition(String userName);
 
     Nutrition calculateNutrition(String foodName,Integer foodWeight);
