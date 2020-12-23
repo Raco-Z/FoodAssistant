@@ -4,6 +4,7 @@ import com.foodAssistant.dao.IMenuDao;
 import com.foodAssistant.dao.IRecordDao;
 import com.foodAssistant.dao.IUserDao;
 import com.foodAssistant.domain.account.UserAccount;
+import com.foodAssistant.domain.menu.Menu;
 import com.foodAssistant.domain.menu.MenuNutrition;
 import com.foodAssistant.domain.menu.Nutrition;
 import com.foodAssistant.domain.record.Record;
@@ -80,8 +81,6 @@ public class UserAccountServiceImpl implements IUserAccountService {
         userDao.createUser(user);
     }
 
-
-
     //生成推荐
     public Nutrition recommendNutrition(String userName) {
         //返回需要摄入的营养
@@ -96,6 +95,22 @@ public class UserAccountServiceImpl implements IUserAccountService {
         n.setFat(recommendFat);
         n.setCarbohydrate(recommendCarbohydrate);
         user.setRecommendedNutrition(n);
-        return user.getRecommendedNutrition();
+        return n;
+    }
+
+    //获取食物中的总营养
+    @Override
+    public Nutrition calculateNutrition(String foodName, Integer foodWeight) {
+        MenuNutrition menu = menuDao.getMenuByName(foodName);
+        Nutrition n = new Nutrition();
+        Double totalCalorie = menu.getCalorie() * foodWeight;
+        Double totalProtein = menu.getProtein() * foodWeight;
+        Double totalFat = menu.getFat() * foodWeight;
+        Double totalCarbohydrate = menu.getCarbohydrate() * foodWeight;
+        n.setCalorie(totalCalorie);
+        n.setProtein(totalProtein);
+        n.setFat(totalFat);
+        n.setCarbohydrate(totalCarbohydrate);
+        return n;
     }
 }

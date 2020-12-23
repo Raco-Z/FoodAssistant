@@ -3,6 +3,7 @@ package com.foodAssistant.service;
 import com.foodAssistant.domain.account.UserAccount;
 import com.foodAssistant.domain.menu.Nutrition;
 import com.foodAssistant.domain.record.Record;
+import org.springframework.stereotype.Service;
 
 import java.util.List;
 
@@ -44,5 +45,7 @@ public interface IUserAccountService extends IAccountService{
     void createUser(UserAccount user);
 
     Nutrition recommendNutrition(String userName);
+
+    Nutrition calculateNutrition(String foodName,Integer foodWeight);
 
 }

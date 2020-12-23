@@ -25,6 +25,8 @@ public interface IRecordDao {
      */
     List<Record> getRecordByUser(String username);
 
+    List<Record> getRecordByFoodName(String foodName);
+
     /**
      * 新建饮食记录
      */

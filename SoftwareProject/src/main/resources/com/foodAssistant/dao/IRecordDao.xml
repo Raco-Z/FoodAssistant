@@ -25,6 +25,10 @@
         select * from record where username = #{userName};
     </select>
 
+    <select id="getRecordByFoodName" parameterType="STRING" resultMap="recordMap">
+        select * from record where foodname = #{foodName};
+    </select>
+
     <!--新建饮食记录-->
     <insert id="createRecord" parameterType="Record">
         insert into record(foodname,username,foodweight)

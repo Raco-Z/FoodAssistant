@@ -123,6 +123,13 @@
             <artifactId>jackson-annotations</artifactId>
             <version>2.11.3</version>
         </dependency>
+        <!-- https://mvnrepository.com/artifact/org.codehaus.jackson/jackson-mapper-asl -->
+        <dependency>
+            <groupId>org.codehaus.jackson</groupId>
+            <artifactId>jackson-mapper-asl</artifactId>
+            <version>1.9.13</version>
+        </dependency>
+
         <!--文件上传需要的依赖-->
 
     </dependencies>

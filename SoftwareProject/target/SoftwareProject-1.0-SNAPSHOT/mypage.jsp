@@ -18,31 +18,24 @@
             $("#listMenu").click(function ()
             {
 
-                var fName = $("#findFood").val();
+                var foodName = $("#findFood").val();
 
                 //发送ajax请求
                 $.ajax({
-                    url:"user/listMenu",
-                    contentType:"application/json;charset=UTF-8",
-                    data:fName,
+                    url:"userLogin/listMenu",
                     type:"post",
-                    success:function (data)
+                    contentType:"application/json;charset=UTF-8",
+                    data:JSON.stringify({"foodName":"asd", "foodId":2, "foodType":"food"}),
+                    dataType:"json",
+                    success:function (result)
                     {
-                        var place = document.getElementById("d1");
-                        var table = document.createElement("table");
-                        if (data=="")
-                        {
-                            place.innerText = "没有找到这种食物"
-                        }
-                        else
-                        {
-                            place.innerText = data;
-                        }
+                        //var place = document.getElementById("d1");
+                        //var table = document.createElement("table");
+                        //place.innerText = data;
+                        alert("done");
+                        alert(result.type);
+                        alert(result);
                     },
-                    error:function (data)
-                    {
-                        alert("查询出错了，请重新查询")
-                    }
 
                 })
             })
@@ -64,12 +57,13 @@
     <div style="border:2px solid">
         <h3>Your Health about Diet</h3>
         <%--查询食物营养表，如果输入为空，则输出整张营养表--%>
-        <form  action="user/listMenu" method="post">
+         <%--<form id="food-name-form" action="user/listMenu" method="post">
             Search for the Nutrition of Food
             <input type="text" id="findFood" name="foodName"><br>
-        </form>
-        <div id="d1"></div>
+            <input type="submit" id="listMenu" name="listMenu" value="Search">
+        </form>--%>
         <button id="listMenu">Search</button>
+        <div id="d1"></div>
         <%--输入每餐的食物名称--%>
         <form action="user/saveRecord" method="post">
             Enter your diet data for today
@@ -86,9 +80,9 @@
     <div style="border:2px solid">
         <h3>RecommendMenu</h3>
         <%--点击按钮显示推荐食谱--%>
-        <form action="user/showRecommendMenu" method="post">
+        <form action="user/showRecommendMenu" method="get">
             <%--发送请求，显示返回的数据--%>
-            <input type="button" name="showRecommendNutrition" value="show" onclick="showRecommendMenu()"><br>
+            <input type="button" name="showRecommendNutrition" value="show"><br>
         </form>
         <div id="d2"></div>
     </div>
@@ -123,29 +117,5 @@
         myChart.setOption(option);
     </script>
 
-    <script>
-        function showRecommendMenu()
-        {
-            var username = ${user.accountName};
-            $.ajax({
-                url:"user/showRecommendMenu",
-                contentType:"application/json;charset=UTF-8",
-                data:username,
-                type:"post",
-                success:function (data)
-                {
-                    var place = document.getElementById("d1");
-                    if (data=="")
-                    {
-                        place.innerText = "没有可推荐的食物"
-                    }
-                    else
-                    {
-                        place.innerText = data;
-                    }
-                }
-            })
-        }
-    </script>
 </body>
 </html>
