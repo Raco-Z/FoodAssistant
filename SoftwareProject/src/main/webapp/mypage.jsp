@@ -62,7 +62,6 @@
             <input type="text" id="findFood" name="foodName"><br>
             <input type="submit" id="listMenu" name="listMenu" value="Search">
         </form>--%>
-        <button id="btn">Test</button>
         <button id="listMenu">Search</button>
         <div id="d1"></div>
         <%--输入每餐的食物名称--%>
