@@ -1,6 +1,8 @@
 package com.foodAssistant.controller;
 
+import com.foodAssistant.domain.account.UserAccount;
 import com.foodAssistant.domain.menu.MenuNutrition;
+import com.foodAssistant.domain.menu.Nutrition;
 import com.foodAssistant.service.IUserAccountService;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.*;
@@ -30,6 +32,13 @@ public class UserController {
         System.out.println("saveName done");
         return "success";
     }*/
+
+    //保存身高体重
+    @RequestMapping(value = "saveInfo", method = RequestMethod.POST)
+    public @ResponseBody String saveInfo(@RequestParam("username")String username, @RequestParam("height") String height, @RequestParam("weight") String weight)
+    {
+        UserAccount = iUserAccountService.
+    }
 
     /*列出食物营养表*/
     @RequestMapping(value = "/listMenu", method = RequestMethod.POST)
@@ -61,11 +70,15 @@ public class UserController {
     }
 
     /*显示推荐食谱，以表格形式展示*/
-    @RequestMapping(value = "/showRecommendMenu", method = RequestMethod.GET)
-    public String showRecommendMenu()
+    @RequestMapping(value = "/showRecommendMenu", method = RequestMethod.POST)
+    public @ResponseBody String showRecommendMenu(@RequestBody String username)
     {
+        //验证方法执行
         System.out.println("showRecommendMenu");
-        return "success";
+        iUserAccountService.recommendNutrition(username);
+        Nutrition nutrition = iUserAccountService.recommendNutrition(username);
+        String rtn = nutrition.toString();
+        return rtn;
     }
 
     /*根据输入的食物名字和重量，计算食物营养*/

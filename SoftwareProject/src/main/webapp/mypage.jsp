@@ -32,16 +32,12 @@
                         var table = document.createElement("table");
                         if (data=="")
                         {
-                            place.innerText = "没有找到这种事物"
+                            place.innerText = "没有找到这种食物"
                         }
                         else
                         {
-
+                            place.innerText = data;
                         }
-                        place.innerText = data;
-                        alert("done");
-                        alert(data.type);
-                        alert(data);
                     },
                     error:function (data)
                     {
@@ -60,6 +56,9 @@
         <form>
             ID: ${user.accountId}<br>
             Your Name: ${user.accountName}<br>
+            Height: <input type="text" id="height" value="10"><br>
+            Weight: <input type="text" id="weight" value="10"><br>
+            <input type="button" id="saveinfo" value="Save" onclick="saveInfo()">
         </form>
     </div>
 
@@ -90,9 +89,9 @@
     <div style="border:2px solid">
         <h3>RecommendMenu</h3>
         <%--点击按钮显示推荐食谱--%>
-        <form action="user/showRecommendMenu" method="get">
+        <form action="user/showRecommendMenu" method="post">
             <%--发送请求，显示返回的数据--%>
-            <input type="button" name="showRecommendNutrition" value="show"><br>
+            <input type="button" name="showRecommendNutrition" value="show" onclick="showRecommendMenu()"><br>
         </form>
         <div id="d2"></div>
     </div>
@@ -109,6 +108,32 @@
         </form>
 
     </div>
+    <script>
+        function saveInfo()
+        {
+            var username = ${user.accountName}
+            var height = $("#height").val();
+            var wetigh = $("#weight").val();
+            $.ajax({
+                url:"user/saveInfo",
+                contentType:"application/json;charset=UTF-8",
+                data:JSON.stringify({"username":username, "height":height, "weight":weight}),
+                type:"post",
+                success:function (data)
+                {
+                    var place = document.getElementById("d1");
+                    if (data=="")
+                    {
+                        place.innerText = "没有可推荐的食物"
+                    }
+                    else
+                    {
+                        place.innerText = data;
+                    }
+                }
+            })
+        }
+    </script>
 
     <script type="text/javascript">
         var myChart = echarts.init(document.getElementById('chart'));
@@ -127,5 +152,29 @@
         myChart.setOption(option);
     </script>
 
+    <script>
+        function showRecommendMenu()
+        {
+            var username = ${user.accountName};
+            $.ajax({
+                url:"user/showRecommendMenu",
+                contentType:"application/json;charset=UTF-8",
+                data:username,
+                type:"post",
+                success:function (data)
+                {
+                    var place = document.getElementById("d1");
+                    if (data=="")
+                    {
+                        place.innerText = "没有可推荐的食物"
+                    }
+                    else
+                    {
+                        place.innerText = data;
+                    }
+                }
+            })
+        }
+    </script>
 </body>
 </html>

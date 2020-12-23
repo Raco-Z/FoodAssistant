@@ -4,7 +4,6 @@ import com.foodAssistant.dao.IMenuDao;
 import com.foodAssistant.dao.IRecordDao;
 import com.foodAssistant.dao.IUserDao;
 import com.foodAssistant.domain.account.UserAccount;
-import com.foodAssistant.domain.menu.Menu;
 import com.foodAssistant.domain.menu.MenuNutrition;
 import com.foodAssistant.domain.menu.Nutrition;
 import com.foodAssistant.domain.record.Record;
@@ -81,8 +80,10 @@ public class UserAccountServiceImpl implements IUserAccountService {
         userDao.createUser(user);
     }
 
+
+
     //生成推荐
-    public void recommendNutrition(String userName) {
+    public Nutrition recommendNutrition(String userName) {
         //返回需要摄入的营养
         UserAccount user = userDao.findUserByName(userName);
         Nutrition n = new Nutrition();
@@ -95,5 +96,6 @@ public class UserAccountServiceImpl implements IUserAccountService {
         n.setFat(recommendFat);
         n.setCarbohydrate(recommendCarbohydrate);
         user.setRecommendedNutrition(n);
+        return user.getRecommendedNutrition();
     }
 }
