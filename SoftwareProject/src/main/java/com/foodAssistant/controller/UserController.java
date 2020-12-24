@@ -57,7 +57,7 @@ public class UserController {
         MenuNutrition foodNutrition = iUserAccountService.getMenuByName(foodName);
         if (foodNutrition==null)
         {
-            return null;
+            return "";
         }
         String rtn = foodNutrition.toString();
         //List<MenuNutrition> menu = new ArrayList<>();
@@ -69,6 +69,10 @@ public class UserController {
     @RequestMapping(value = "/saveRecord", method = RequestMethod.POST)
     public @ResponseBody String saveRecord(@RequestParam("username") String username, @RequestParam("foodName") String foodName, @RequestParam("foodWeight") String foodWeight)
     {
+        if (iUserAccountService.getMenuByName(foodName)==null)
+        {
+            return "";
+        }
         System.out.println("saveRecord done");
         Record record = new Record();
         record.setUserName(username);
@@ -94,8 +98,11 @@ public class UserController {
     {
         //验证方法执行
         System.out.println("showRecommendMenu");
-        iUserAccountService.recommendNutrition(username);
         Nutrition nutrition = iUserAccountService.recommendNutrition(username);
+        if (nutrition==null)
+        {
+            return "";
+        }
         String rtn = nutrition.toString();
         return rtn;
     }
@@ -104,7 +111,12 @@ public class UserController {
     @RequestMapping(value = "/calNutrition", method = RequestMethod.POST)
     public @ResponseBody String calculateNutrition(@RequestParam("foodName") String foodName, @RequestParam("foodWeight") String foodWeight)
     {
+        //验证方法执行
         System.out.println("calculateNutrition done");
+        if (iUserAccountService.getMenuByName(foodName)==null)
+        {
+            return "";
+        }
         Nutrition nutrition = iUserAccountService.calculateNutrition(foodName, Integer.parseInt(foodWeight));
         String rtn = nutrition.toString();
         return rtn;

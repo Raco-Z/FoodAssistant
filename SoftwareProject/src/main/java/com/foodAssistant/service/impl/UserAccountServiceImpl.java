@@ -92,9 +92,9 @@ public class UserAccountServiceImpl implements IUserAccountService {
         UserAccount user = userDao.findUserByName(userName);
         Nutrition n = new Nutrition();
         Double recommendCalorie = (double)10 * user.getHeight() + user.getWeight();
-        Double recommendProtein = 0.3 * recommendCalorie / 4;
-        Double recommendFat = 0.2 * recommendCalorie / 9;
-        Double recommendCarbohydrate = 0.5 * recommendCalorie / 4;
+        Double recommendProtein = (double)Math.round((0.3 * recommendCalorie / 4)*100)/100;
+        Double recommendFat = (double)Math.round((0.2 * recommendCalorie / 9)*100)/100;
+        Double recommendCarbohydrate = (double)Math.round((0.5 * recommendCalorie / 4)*100)/100;
         n.setCalorie(recommendCalorie);
         n.setProtein(recommendProtein);
         n.setFat(recommendFat);
